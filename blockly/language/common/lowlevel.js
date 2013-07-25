@@ -23,6 +23,7 @@
  'use strict';
 
 Blockly.Language.lowlevel_package_main = {
+    //main function
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -204,6 +205,7 @@ Blockly.Language.lowlevel_package_main = {
         this.valueConnection_ = input && input.connection.targetConnection; 
     },
     onchange: function() {
+        // If this block or the highlevel_application block are more than once (or both) on the workspace, show a warning
         var allowedNumberOfThisBlock = 1;
         var topBlocks = this.workspace && this.workspace.topBlocks_;
         var appCount = 0;
@@ -257,6 +259,7 @@ Blockly.Language.lowlevel_application_container = {
 };
 
 Blockly.Language.lowlevel_from_x_import = {
+    // block to alow to import functionalities of modules
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -282,6 +285,7 @@ Blockly.Language.lowlevel_from_x_import = {
 };
 
 Blockly.Language.lowlevel_create_publisher = {
+    // Instantiate ROS publisher
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -318,6 +322,7 @@ Blockly.Language.lowlevel_create_publisher = {
 };
 
 Blockly.Language.lowlevel_publish = {
+    // Publish a ROS message to the previously specified topic
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -350,6 +355,7 @@ Blockly.Language.lowlevel_publish = {
 };
 
 Blockly.Language.lowlevel_subscriber = {
+    // Subscribe (listen) to a ROS topic
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -380,6 +386,7 @@ Blockly.Language.lowlevel_subscriber = {
 };
 
 Blockly.Language.lowlevel_ros_init_node = {
+    // Initialize a ROS node
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -411,6 +418,7 @@ Blockly.Language.lowlevel_ros_init_node.OPERATORS_BOOL =
      [Blockly.LANG_LOW_LEVEL_ROS_INIT_NODE_TRUE, 'TRUE']];
 
 Blockly.Language.lowlevel_ros_spin = {
+    // Keeps the ROS node alive
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -422,11 +430,12 @@ Blockly.Language.lowlevel_ros_spin = {
 };
 
 Blockly.Language.lowlevel_ros_cancelled = {
+    // Check whether ROS was cancelled or not
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle('ROS cancelled');
-        this.setOutput(true, null); //what is the output type, check ros.org ros::ok() or rospy.is_shutdown()
+        this.setOutput(true, null);
         this.setTooltip(
                         'Check whether ROS is cancelled by ctr+c or similar. \n' +
                         '---\n' +
@@ -437,6 +446,7 @@ Blockly.Language.lowlevel_ros_cancelled = {
 };
 
 Blockly.Language.lowlevel_ros_log = {
+    // ROS logging
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -464,6 +474,7 @@ Blockly.Language.lowlevel_ros_log.OPERATORS =
      [Blockly.LANG_LOW_LEVEL_ROS_LOG_FATAL, 'FATAL']];
 
 Blockly.Language.lowlevel_ros_sleep = {
+    // ROS sleep
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -478,6 +489,7 @@ Blockly.Language.lowlevel_ros_sleep = {
 };
 
 Blockly.Language.lowlevel_move_base_goal = {
+    // Creates a movebaseGoal goal with a target pose
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -492,6 +504,7 @@ Blockly.Language.lowlevel_move_base_goal = {
 };
 
 Blockly.Language.lowlevel_get_ros_time = {
+    // Get ROS time
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -502,6 +515,7 @@ Blockly.Language.lowlevel_get_ros_time = {
 };
 
 Blockly.Language.lowlevel_get_ros_time_in_unit = {
+    // Get rostime in seconds
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -514,6 +528,7 @@ Blockly.Language.lowlevel_get_ros_time_in_unit = {
 };
 
 Blockly.Language.lowlevel_laserscan_ranges_and_angles = {
+    // Get laser scan results
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -531,6 +546,7 @@ Blockly.Language.lowlevel_laserscan_ranges_and_angles = {
 };
 
 Blockly.Language.lowlevel_laserscan_inrange = {
+    // Get laser scan results within a specific range
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -560,6 +576,7 @@ Blockly.Language.lowlevel_laserscan_inrange = {
 };
 
 Blockly.Language.lowlevel_laserscan_closest_distance = {
+    // Get the scan with the closest distance to the robot
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -576,6 +593,7 @@ Blockly.Language.lowlevel_laserscan_closest_distance = {
 };
 
 Blockly.Language.lowlevel_read_arm_joint_positions = {
+    // Read the actual joint configuration
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -592,6 +610,7 @@ Blockly.Language.lowlevel_read_arm_joint_positions = {
 };
 
 Blockly.Language.lowlevel_read_finger_positions = {
+    // Read the actual finger configuration (position)
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -609,6 +628,7 @@ Blockly.Language.lowlevel_read_finger_positions = {
 };
 
 Blockly.Language.lowlevel_read_ultrasonic = {
+    // Read the actual ultrasound value
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -626,6 +646,7 @@ Blockly.Language.lowlevel_read_ultrasonic = {
 
 
 Blockly.Language.lowlevel_odometry = {
+    // Read the actual odometry information
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -642,6 +663,7 @@ Blockly.Language.lowlevel_odometry = {
 };
 
 Blockly.Language.lowlevel_quaternion_from_euler = {
+    // Use ROS to provide a conversion from quaternion to euler angles
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -664,6 +686,7 @@ Blockly.Language.lowlevel_quaternion_from_euler = {
 };
 
 Blockly.Language.lowlevel_is_wall = {
+    // Check for a wall within a specific direction and distance 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -689,6 +712,7 @@ Blockly.Language.lowlevel_is_wall = {
 }
 
 Blockly.Language.lowlevel_get_param = {
+    // Get values from a ROS parameter server 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
@@ -700,8 +724,6 @@ Blockly.Language.lowlevel_get_param = {
         this.setOutput(true,null);
     }
 };
-
-
 
 Blockly.Language.ros_other_node = {
     helpUrl: null,
@@ -716,6 +738,7 @@ Blockly.Language.ros_other_node = {
 };
 
 Blockly.Language.try_catch = {
+    // try and catch (except) to allow error handling. Note: For now the only supportes exception type is 'Exception'. 'ValueError' and cannot be chosen.
     helpUrl: null,
     init: function() {
         this.setColour(120);

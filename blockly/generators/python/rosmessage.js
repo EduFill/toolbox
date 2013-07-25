@@ -17,7 +17,7 @@
  */
  
  /**
- *  * @fileoverview Generating Python for low level blocks.
+ *  * @fileoverview Generating Python for ROS message blocks.
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
@@ -175,19 +175,19 @@ Blockly.Python.rosmessage_joint_state_msg_position = function() {
 };
 
 Blockly.Python.rosmessage_joint_state_msg_velocity = function() {
-    var index = Blockly.Python.valueToCode(this, 'INDEX', Blockly.Python.ORDER_NONE);
-    var name = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE);
+    var list = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE);
+    var numberOfJoints = Blockly.Python.valueToCode(this, 'NUMBER_OF_JOINTS', Blockly.Python.ORDER_NONE);
     var variable = this.getTitleValue('VAR');
-    var code = variable + '.velocity[' + index + '] = ' + name + '\n';
+    var code = variable + '.velocity = [' + list + '[i] for i in range(' + numberOfJoints + ')]\n';
     
     return code;
 };
 
 Blockly.Python.rosmessage_joint_state_msg_effort = function() {
-    var index = Blockly.Python.valueToCode(this, 'INDEX', Blockly.Python.ORDER_NONE);
-    var name = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE);
+    var list = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE);
+    var numberOfJoints = Blockly.Python.valueToCode(this, 'NUMBER_OF_JOINTS', Blockly.Python.ORDER_NONE);
     var variable = this.getTitleValue('VAR');
-    var code = variable + '.effort[' + index + '] = ' + name + '\n';
+    var code = variable + '.effort = [' + list + '[i] for i in range(' + numberOfJoints + ')]\n';
     
     return code;
 };

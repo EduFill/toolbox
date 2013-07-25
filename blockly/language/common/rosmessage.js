@@ -199,7 +199,7 @@ Blockly.Language.rosmessage_gripper_position_msg = {
     }
 };
 
-Blockly.Language.rosmessage_joint_state_msg_name= {
+Blockly.Language.rosmessage_joint_state_msg_name = {
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ROS_MESSAGE_COLOUR);
@@ -231,7 +231,7 @@ Blockly.Language.rosmessage_joint_state_msg_name= {
     }
 };
 
-Blockly.Language.rosmessage_joint_state_msg_position= {
+Blockly.Language.rosmessage_joint_state_msg_position = {
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ROS_MESSAGE_COLOUR);
@@ -263,21 +263,23 @@ Blockly.Language.rosmessage_joint_state_msg_position= {
     }
 };
 
-Blockly.Language.rosmessage_joint_state_msg_velocity= {
+Blockly.Language.rosmessage_joint_state_msg_velocity = {
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ROS_MESSAGE_COLOUR);
         this.appendDummyInput()
             .appendTitle(new Blockly.FieldVariable('jp'), 'VAR')
             .appendTitle('.velocity');
-        this.appendValueInput('INDEX')
-            .setCheck('Number')
-            .appendTitle('[')
-            .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('VALUE')
-            .appendTitle('] = ')
+            .appendTitle(' = value in list')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .setCheck(null);
+        this.appendValueInput('NUMBER_OF_JOINTS')
+            .appendTitle('(for all joints until')
             .setAlign(Blockly.ALIGN_RIGHT)
             .setCheck('Number');
+        this.appendDummyInput()
+            .appendTitle(')');
         this.setInputsInline(true);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -293,21 +295,23 @@ Blockly.Language.rosmessage_joint_state_msg_velocity= {
     }
 };
 
-Blockly.Language.rosmessage_joint_state_msg_effort= {
+Blockly.Language.rosmessage_joint_state_msg_effort = {
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ROS_MESSAGE_COLOUR);
         this.appendDummyInput()
             .appendTitle(new Blockly.FieldVariable('jp'), 'VAR')
             .appendTitle('.effort');
-        this.appendValueInput('INDEX')
-            .setCheck('Number')
-            .appendTitle('[')
-            .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('VALUE')
-            .appendTitle('] = ')
+            .appendTitle(' = value in list')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .setCheck(null);
+        this.appendValueInput('NUMBER_OF_JOINTS')
+            .appendTitle('(for all joints until')
             .setAlign(Blockly.ALIGN_RIGHT)
             .setCheck('Number');
+        this.appendDummyInput()
+            .appendTitle(')');
         this.setInputsInline(true);
         this.setPreviousStatement(true);
         this.setNextStatement(true);

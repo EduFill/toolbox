@@ -594,3 +594,23 @@ Blockly.Language.detect_and_reach_object = {
 
 Blockly.Language.detect_and_reach_object.OPERATORS = 
     [[Blockly.LANG_HIGH_LEVEL_FIND_AND_GRASP_OBJECT_CUBE, 'CUBE']];
+
+Blockly.Language.highlevel_move_base_distance = {
+    helpUrl: null,
+    init: function() {
+        this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
+        this.titleText = 'distance (m) or angle (rad)';
+        this.dropdown = new Blockly.FieldDropdown(Blockly.CONFIG_BASE_DIRECTION);
+        this.inputNameDropdown = 'DISTANCE';
+        this.appendDummyInput()
+            .appendTitle('move robot base');
+        this.appendValueInput('DURATION')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendTitle('direction')
+            .appendTitle(this.dropdown, 'MODE')
+            .appendTitle(this.titleText)
+            .setCheck('Number');
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+    }
+};

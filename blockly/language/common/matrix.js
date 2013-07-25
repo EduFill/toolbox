@@ -23,13 +23,24 @@
 'use strict';
 
 Blockly.Language.vector = {
+    // Vector 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
         this.appendDummyInput().appendTitle('vector');
         this.setMutator(new Blockly.Mutator(['vector_value']));
         this.setOutput(true,'Vector');
-        this.setTooltip('');
+        this.setTooltip(
+                        'Vector\n' +
+                        '---\n' +
+                        'Inputs:\n' +
+                        '* value (value input): Specify the value for the vector\n' +
+                        'The only allowed connection type is \'Number\'\n' +
+                        '---\n' +
+                        'Output:\n' +
+                        '* Return the vector.\n' +
+                        'The output type is \'Vector\''
+                        );
         this.valueCount_ = 0;
     },
     mutationToDom: function() {
@@ -128,13 +139,25 @@ Blockly.Language.vector_value = {
 };
 
 Blockly.Language.matrix = {
+    // Matrix frame
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
         this.appendDummyInput().appendTitle('matrix');
         this.setMutator(new Blockly.Mutator(['matrix_row_value']));
         this.setOutput(true,'Matrix');
-        this.setTooltip('');
+        this.setTooltip(
+                        'Used to create a matrix.\n' + 
+                        'Note: The number of columns for each row have to be equal.\n' +
+                        '---\n' +
+                        'Inputs:\n' +
+                        '* row (value input): Add row blocks with columns\n' +
+                        'The only allowed connection type is \Row\'\n' + 
+                        '---\n' +
+                        'Output:\n' +
+                        '* Return the matrix.\n' +
+                        'The output type is \'Matrix\'' 
+                        );
         this.rowCount_ = 0;
     },
     mutationToDom: function() {
@@ -233,6 +256,7 @@ Blockly.Language.matrix_row_value = {
 };
 
 Blockly.Language.row = {
+    // Matrix row with columns
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
@@ -240,7 +264,17 @@ Blockly.Language.row = {
         this.setMutator(new Blockly.Mutator(['row_column_value']));
         this.setOutput(true,'Row');
         this.setInputsInline(true);
-        this.setTooltip('');
+        this.setTooltip(
+                        'A matrix row with columns\n' +
+                        '---\n' +
+                        'Inputs: \n' +
+                        '* column (value input): Specify the value for the column in a row.\n' +
+                        'The only allowed connection type ist \'Number\'\n' +
+                        '---\n' +
+                        'Output:\n' +
+                        '* Return a matrix row.\n' +
+                        'The output type is \'Row\'' 
+                        );
         this.columnCount_ = 0;
     },
     mutationToDom: function() {
@@ -339,65 +373,110 @@ Blockly.Language.row_column_value = {
 };
 
 Blockly.Language.axis_rotation = {
+    // Rotate matrix along an axis.
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
         var dropdown = new Blockly.FieldDropdown([['x axis','X'],['y axis','Y'], ['z axis', 'Z']]);
-        this.appendValueInput('DEG');
+        this.appendValueInput('DEG')
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle('degree rotation about')
             .appendTitle(dropdown, 'MODE');
         this.setOutput(true,'Matrix');
         this.setInputsInline(true);
+        this.setTooltip(
+                        'Rotate matrix along an axis.\n' +
+                        '---\n' +
+                        'Fields:\n' +
+                        '* axis (dropdown): Specify the axis of rotation\n' + 
+                        '---\n' +
+                        'Inputs:\n' +
+                        '* unlabeld (value input): Specify the degree of rotation\n' +
+                        'the only allowed connection type is \'Number\'\n' +
+                        '---\n' + 
+                        'Output:\n' +
+                        '* Return the rotated matrix.\n' +
+                        'The output type is \'matrix\'.'
+                        );
     }
 };
 
 Blockly.Language.matrix_multiplication = {
+    // Matrix multiplication operator
     helpUrl: null,
     init: function(){
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
         this.appendValueInput('A')
-        .setCheck(['Matrix','Vector']);
+        .setCheck(['Matrix','Vector', 'Number']);
         this.appendValueInput('B')
-        .setCheck(['Matrix','Vector'])
+        .setCheck(['Matrix','Vector', 'Number'])
         .appendTitle('\u00D7');
-        this.setInputsInline(true)
-        this.setOutput(true,['Matrix','Vector'])
+        this.setInputsInline(true);
+        this.setOutput(true,['Matrix','Vector']);
+        this.setTooltip(
+                        'Matrix multiplication.\n' + 
+                        'Note: Please make sure that you perform allowed operations. Otherwise a run-time error will occur. Unallowed operation are e.g. multiplication of two vectors, etc.\n' +
+                        '---\n' +
+                        'Inputs:\n' +
+                        '* unlabeled (value input): Specify the vector or matrix of interest.\n' +
+                        'The allowed connector types are \'Vector\' and \'Matrix\ as well as \'Number\'\n' +
+                        '---\n' +
+                        'Output:\n' +
+                        '* Return the result of the multiplication\n' +
+                        'Output types are \'Vector\' and \'Matrix\'.'
+                        );
     }
 };
 
 Blockly.Language.matrix_add_and_sub = {
+    // Matrix addition and subtration 
     helpUrl: null,
     init: function(){
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
         var dropdown = new Blockly.FieldDropdown([['+','ADD'],['-','SUB']]);
         this.appendValueInput('A')
-        .setCheck(['Matrix','Vector']);
+        .setCheck(['Matrix','Vector','Number']);
         this.appendValueInput('B')
-        .setCheck(['Matrix','Vector'])
+        .setCheck(['Matrix','Vector', 'Number'])
         .appendTitle(dropdown, 'MODE');
         this.setInputsInline(true)
-        this.setOutput(true,['Matrix','Vector'])
+        this.setOutput(true,['Matrix','Vector']);
+        this.setTooltip(
+                        'Perform matrix addition or subtraction\n' +
+                        '---\n' +
+                        'Fields:\n' +
+                        '* (dropdown): Choose an operator from the list.\n' +
+                        '---\n' +
+                        'Inputs:\n' +
+                        '* unlabeled (value input): Specify the vector or matrix of interest.\n' +
+                        'The allowed connector types are \'Vector\' and \'Matrix\ as well as \'Number\'\n' +
+                        '---\n' +
+                        'Output:\n' +
+                        '* Return the result of the specified operation\n' +
+                        'Output types are \'Vector\' and \'Matrix\'.'
+                        );
     }
 };
 
 Blockly.Language.matrix_create_frame = {
-  helpUrl: null,
-  init: function() {
-    this.setColour(Blockly.LANG_DUMMY_COLOUR);
-    this.appendDummyInput()
-        .appendTitle("homogeneous transform")
-        .appendTitle(new Blockly.FieldTextInput("frame_name"), "NAME");
-    this.appendValueInput("TRANSLATION")
-        .setCheck("Translation")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendTitle("translation (linear offset)")
-        .setCheck(['Vector','Matrix']);
-    this.appendValueInput("ROTATION")
-        .setCheck("Matrix")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendTitle("rotation matrix (angular offset)");
-    this.setOutput(true, "Matrix");
-    this.setTooltip('');
+    // Create a homogeneous transform matrix
+    helpUrl: null,
+    init: function() {
+      this.setColour(Blockly.LANG_DUMMY_COLOUR);
+      this.appendDummyInput()
+          .appendTitle("homogeneous transform")
+          .appendTitle(new Blockly.FieldTextInput("frame_name"), "NAME");
+      this.appendValueInput("TRANSLATION")
+          .setCheck("Translation")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendTitle("translation (linear offset)")
+          .setCheck(['Vector','Matrix']);
+      this.appendValueInput("ROTATION")
+          .setCheck("Matrix")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendTitle("rotation matrix (angular offset)");
+      this.setOutput(true, "Matrix");
+      this.setTooltip('');
   }
 };

@@ -23,6 +23,7 @@
  'use strict';
 
 Blockly.Language.highlevel_application = {
+    // Frame that specifies all mandatory requirements in order to get the robot running
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -41,6 +42,7 @@ Blockly.Language.highlevel_application = {
         this.pkg_name = Blockly.EDUFILL_ROS_PKG_NAME;
     },
     onchange: function() {
+        // If this block or the lowlevel_package_main block are more than once (or both) on the workspace, show a warning
         var allowedNumberOfThisBlock = 1;
         var topBlocks = this.workspace && this.workspace.topBlocks_;
         var appCount = 0;
@@ -62,6 +64,7 @@ Blockly.Language.highlevel_application = {
 };
 
 Blockly.Language.highlevel_move_base_to_goal = {
+    // Move the robot base (platform) to a global goal pose indicated by a String
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -171,28 +174,9 @@ Blockly.Language.highlevel_move_base_to_goal = {
         block.image.setText(Blockly.pathToBlockly + 'media/menu0.png');
     }
 };
-
-Blockly.Language.highlevel_move_base_distance = {
-    helpUrl: null,
-    init: function() {
-        this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
-        this.titleText = 'distance (m) or angle (rad)';
-        this.dropdown = new Blockly.FieldDropdown(Blockly.CONFIG_BASE_DIRECTION);
-        this.inputNameDropdown = 'DISTANCE';
-        this.appendDummyInput()
-            .appendTitle('move robot base');
-        this.appendValueInput('DURATION')
-            .setAlign(Blockly.ALIGN_RIGHT)
-            .appendTitle('direction')
-            .appendTitle(this.dropdown, 'MODE')
-            .appendTitle(this.titleText)
-            .setCheck('Number');
-        this.setPreviousStatement(true);
-        this.setNextStatement(true);
-    }
-};
      
 Blockly.Language.highlevel_move_base_to_direction = {
+    // Move or turn the robot for a defined amount of time
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -387,6 +371,7 @@ Blockly.Language.highlevel_move_base_to_direction = {
 };
 
 Blockly.Language.highlevel_move_gripper_string = {
+    // Finger grasp and release action specified by a string
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -525,6 +510,7 @@ Blockly.Language.highlevel_move_gripper_string = {
 };
 
 Blockly.Language.highlevel_move_arm_joint_string = {
+    // Move the robot arm to a joint configuration specified by a string
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -637,6 +623,7 @@ Blockly.Language.highlevel_move_arm_joint_string = {
 };
 
 Blockly.Language.highlevel_move_arm_through_ik = {
+    // Move arm by inverse kinematics to a 6D pose
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -793,6 +780,7 @@ Blockly.Language.highlevel_move_arm_through_ik = {
 };
 
 Blockly.Language.highlevel_find_cube = {
+    // find a colored cube
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);
@@ -817,6 +805,7 @@ Blockly.Language.highlevel_find_cube = {
 };
 
 Blockly.Language.highlevel_check_wall = {
+    // Check if a wall is nearby
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_HIGH_LEVEL_COLOUR);

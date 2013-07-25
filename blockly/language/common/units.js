@@ -1,8 +1,7 @@
 /**
  * Visual Blocks Language
  *
- * Copyright 2012 Google Inc.
- * http://code.google.com/p/blockly/
+ * Copyright 2012 ECHORD EduFill
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +17,13 @@
  */
  
  /**
- * @fileoverview unit blocks for Blockly.
+ * @fileoverview Unit blocks for Blockly.
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
 
 Blockly.Language.units_duration = {
+    // numeric value of a duration
     helpUrl: null,
     init: function() {
         var dropdown = new Blockly.FieldDropdown(this.OPERATORS);
@@ -60,6 +60,7 @@ Blockly.Language.units_duration.OPERATORS =
      ['hours', 'H']];
 
 Blockly.Language.units_distance = {
+    // numeric value of a distance
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -96,6 +97,7 @@ Blockly.Language.units_distance.OPERATORS =
      ['millimeter', 'MM']];
      
 Blockly.Language.units_velocity = {
+    // numeric value of a velocity
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -132,6 +134,7 @@ Blockly.Language.units_velocity.OPERATORS =
      
 
 Blockly.Language.units_6dPose = {
+    // 6D pose (x,y,z, roll,pitch,yaw) 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -186,6 +189,7 @@ Blockly.Language.units_6dPose = {
 };
 
 Blockly.Language.units_get_6dpose_element = {
+    // Get access to elements of 6D pose 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -223,6 +227,7 @@ Blockly.Language.units_6dpose_element_operators =
      ]
 
 Blockly.Language.units_set_6dpose_element = {
+    // Set element of 6D pose to a numeric value
     helpUrl: null,
     init: function(){
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -253,6 +258,7 @@ Blockly.Language.units_set_6dpose_element = {
 };
 
 Blockly.Language.units_joints = {
+    // Create a list of joint angles with their numeric values. 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -337,7 +343,6 @@ Blockly.Language.units_joints = {
     }
 };
 
-
 Blockly.Language.units_joints_container = {
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -358,6 +363,7 @@ Blockly.Language.units_joints_jointvalue = {
 };
 
 Blockly.Language.units_get_joints_element = {
+    // get numeric value of specific joint
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -375,6 +381,7 @@ Blockly.Language.units_get_joints_element = {
 };
 
 Blockly.Language.units_set_joints = {
+    // Set one joint to a numeric value
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -396,6 +403,7 @@ Blockly.Language.units_set_joints = {
 };
 
 Blockly.Language.units_degToRad = {
+    // Perform a degree to radian conversion of a numeric value
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -418,6 +426,7 @@ Blockly.Language.units_degToRad = {
 };
 
 Blockly.Language.units_radToDeg = {
+    // Perform a radian to degree conversion of a numeric value
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -440,6 +449,7 @@ Blockly.Language.units_radToDeg = {
 };
 
 Blockly.Language.units_eulerToQuaternion = {
+  // Perform an euler angles to quaternion conversion of a numeric value
   helpUrl: null,
   init: function() {
     this.setColour(Blockly.LANG_UNITS_COLOUR);
@@ -476,6 +486,7 @@ Blockly.Language.units_eulerToQuaternion = {
 };
 
 Blockly.Language.units_quaternionToEuler = {
+  // Perform a quaternion to euler angles conversion of a numeric value  
   helpUrl: null,
   init: function() {
     this.setColour(Blockly.LANG_UNITS_COLOUR);

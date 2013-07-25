@@ -23,6 +23,7 @@
  'use strict';
 
 Blockly.Language.midlevel_move_gripper = {
+    // Move the fingers to positions specified by numeric values
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -172,63 +173,65 @@ Blockly.Language.midlevel_reference_frame.OPERATORS =
      [Blockly.LANG_MID_LEVEL_REFERENCE_FRAME_GRIPPER, 'GRIPPER']];
 
 Blockly.Language.midlevel_ros_move_base_twist = {
-  helpUrl: null,
-  init: function() {
-    this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
-    this.appendDummyInput()
-        .appendTitle('move robot base (twist)');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.appendValueInput('L_X')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck('Number')
-        .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_X); // linear x
-    this.appendValueInput('L_Y')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck('Number')
-        .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_Y); // linear y
-    this.appendValueInput('L_Z')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck('Number')
-        .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_Z); // linear z
-    this.appendValueInput('A_X')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck('Number')
-        .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_X);// angular x
-    this.appendValueInput('A_Y')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck('Number')
-        .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_Y);// angular y
-    this.appendValueInput('A_Z')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck('Number')
-        .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_Z);// angular z
-    this.setTooltip(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_TOOLTIP);
-    this.setInputsInline(false);
-    this.setTooltip(
-                    'Move the robot base by velocities. \n' +
-                    '---\n' +
-                    'Inputs:\n' +
-                    '* linear.x: Specify the velocity (m/s) in x direction.\n' +
-                    'The only allowed connection type is \'Number\'.\n' +
-                    '* linear.y: Specify the velocity (m/s) in y direction.\n' +
-                    'The only allowed connection type is \'Number\'.\n' +
-                    '* linear.z: Specify the velocity (m/s) in z direction.\n' +
-                    'Note: This value is only required if the robot can fly, dive, or operate in weightlessness.\n' +
-                    'The only allowed connection type is \'Number\'.\n' +
-                    '* angular.x: Specify the velocity (rad/s) to rotate around the X-axis\n' +
-                    'The only allowed connection type is \'Number\'.\n' +
-                    'Note: This value is only required if the robot can fly, dive, or operate in weightlessness.\n' +
-                    '* angular.y: Specify the velocity (rad/s) to rotate around the Y-axis\n' +
-                    'The only allowed connection type is \'Number\'.\n' +
-                    'Note: This value is only required if the robot can fly, dive, or operate in weightlessness.\n' +
-                    '* angular.z: Specify the velocity (rad/s) to rotate around the Z-axis\n' +
-                    'The only allowed connection type is \'Number\'.'
-                    );
-  }
+    // Allows to move the robot base by twist messages
+    helpUrl: null,
+    init: function() {
+      this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
+      this.appendDummyInput()
+          .appendTitle('move robot base (twist)');
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.appendValueInput('L_X')
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .setCheck('Number')
+          .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_X); // linear x
+      this.appendValueInput('L_Y')
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .setCheck('Number')
+          .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_Y); // linear y
+      this.appendValueInput('L_Z')
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .setCheck('Number')
+          .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_Z); // linear z
+      this.appendValueInput('A_X')
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .setCheck('Number')
+          .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_X);// angular x
+      this.appendValueInput('A_Y')
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .setCheck('Number')
+          .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_Y);// angular y
+      this.appendValueInput('A_Z')
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .setCheck('Number')
+          .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_Z);// angular z
+      this.setTooltip(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_TOOLTIP);
+      this.setInputsInline(false);
+      this.setTooltip(
+                      'Move the robot base by velocities. \n' +
+                      '---\n' +
+                      'Inputs:\n' +
+                      '* linear.x: Specify the velocity (m/s) in x direction.\n' +
+                      'The only allowed connection type is \'Number\'.\n' +
+                      '* linear.y: Specify the velocity (m/s) in y direction.\n' +
+                      'The only allowed connection type is \'Number\'.\n' +
+                      '* linear.z: Specify the velocity (m/s) in z direction.\n' +
+                      'Note: This value is only required if the robot can fly, dive, or operate in weightlessness.\n' +
+                      'The only allowed connection type is \'Number\'.\n' +
+                      '* angular.x: Specify the velocity (rad/s) to rotate around the X-axis\n' +
+                      'The only allowed connection type is \'Number\'.\n' +
+                      'Note: This value is only required if the robot can fly, dive, or operate in weightlessness.\n' +
+                      '* angular.y: Specify the velocity (rad/s) to rotate around the Y-axis\n' +
+                      'The only allowed connection type is \'Number\'.\n' +
+                      'Note: This value is only required if the robot can fly, dive, or operate in weightlessness.\n' +
+                      '* angular.z: Specify the velocity (rad/s) to rotate around the Z-axis\n' +
+                      'The only allowed connection type is \'Number\'.'
+                      );
+    }
 };
 
 Blockly.Language.midlevel_move_arm_joint_position = {
+    // Move the robot arm to the specified joint configuration
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -385,6 +388,7 @@ Blockly.Language.midlevel_move_arm_joint_position = {
 };
 
 Blockly.Language.midlevel_move_base_relative = {
+    // Move the robot base relative to its actual position
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -408,6 +412,7 @@ Blockly.Language.midlevel_move_base_relative = {
 };
 
 Blockly.Language.midlevel_move_base_to_pose = {
+    // Move the robot base to a specified 6D pose
     helpUrl: null,
     init: function() {
         this.changemode = new Blockly.ChangeMode(this, 'INCHANGEMODE');
@@ -552,6 +557,7 @@ Blockly.Language.midlevel_move_base_to_pose = {
 };
 
 Blockly.Language.midlevel_ik_checker = {
+    //Determine whether a cartesian pose can be reached
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -590,6 +596,7 @@ Blockly.Language.midlevel_ik_checker = {
 };
 
 Blockly.Language.midlevel_ik_solver = {
+    // Perform inverse kinematics in order to reach a 6D pose.
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -628,6 +635,7 @@ Blockly.Language.midlevel_ik_solver = {
 };
 
 Blockly.Language.midlevel_fk_solver = {
+    // Perform forward kinematics to get the 6D pose from joint angles
     helpUrl: null,
     init: function() {
         this.variableName = 'kinematics_solver';
@@ -657,6 +665,7 @@ Blockly.Language.midlevel_fk_solver = {
 };
 
 Blockly.Language.midlevel_mapping = {
+    // Mapping of environment
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -714,6 +723,7 @@ Blockly.Language.midlevel_mapping = {
 };
 
 Blockly.Language.midlevel_read_map_location = {
+    // Read the actual location of the robot
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
@@ -757,6 +767,20 @@ Blockly.Language.midlevel_check_wall = {
             .appendTitle('with max. distance (m) of')
             .setCheck('Number');
         this.setInputsInline(true);
+        this.setTooltip(
+                        'Test whether a wall is within a range in a specified direction.\n' +
+                        '---\n' +
+                        'Fields:\n' +
+                        '* ' + Blockly.ChangeModeTooltip + '\n' +
+                        '* direction (dropdown): Specifiy the direction which you would like to test for a wall.\n' +
+                        '---\n' +
+                        'Inputs:\n' +
+                        '* distance (value input): Specify a maximum distance (in meters) in which a wall should be detected.\n' +
+                        'The only allowed connection type is \'Number\'\n' +
+                        '---\n' +
+                        'Output:\n' +
+                        '* Return True if a wall (obstacle) was detected and False otherwise.'
+                        );
     },
     mutationToDom: function() {
         var container = document.createElement('mutation');

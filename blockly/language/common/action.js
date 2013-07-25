@@ -23,6 +23,7 @@
  'use strict';
 
 Blockly.Language.action_simple_action_client = {
+    // Make use of a SimpleActionClient (actionlib) 
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ACTION_COLOUR);
@@ -37,6 +38,7 @@ Blockly.Language.action_simple_action_client = {
 };
 
 Blockly.Language.action_client_wait_for_server = {
+    // Allows a client to wait for a server to come up (blocking)
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ACTION_COLOUR);
@@ -51,6 +53,7 @@ Blockly.Language.action_client_wait_for_server = {
 };
 
 Blockly.Language.action_client_wait_for_result = {
+    // Allows a client to wait for results (blocking)
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ACTION_COLOUR);
@@ -65,6 +68,7 @@ Blockly.Language.action_client_wait_for_result = {
 };
 
 Blockly.Language.action_client_send_goal = {
+    // Allows a client to send a goal message
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ACTION_COLOUR);
@@ -82,6 +86,7 @@ Blockly.Language.action_client_send_goal = {
 };
 
 Blockly.Language.action_move_base_action = {
+    // An action to move the robot base
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_ACTION_COLOUR);

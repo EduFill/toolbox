@@ -34,8 +34,11 @@
  * * ...
  * * [this.append{Value|Statement|Dummy}Input].[...].appendTitle(checkbox, 'STATE');
  * 
+ * An additional ChangeMode generator is provided within createChangeMode folder. 
+ * Please be aware that the generator is thought to be helpful and not complete.
+ * Therefore additional adaptions are required in order to get the functionality completely running.
+ * 
 */
- 
  
 Blockly.ChangeMode = function(block, appendInput) {
     this.block_ = block;

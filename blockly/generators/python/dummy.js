@@ -1,8 +1,7 @@
 /**
  * Visual Blocks Language
  *
- * Copyright 2012 Google Inc.
- * http://code.google.com/p/blockly/
+ * Copyright 2012 ECHORD EduFill
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,5 +157,13 @@ Blockly.Python.detect_and_reach_object = function() {
     var object = 'LANG_HIGH_LEVEL_FIND_AND_GRASP_OBJECT_' + this.getTitleValue('MODE'); //value is defined by find_and_grasp_object block
     var code = 'print \"detect and reach ' + Blockly[object] + '\"\n';
     
+    return code;
+};
+
+Blockly.Python.highlevel_move_base_distance = function() {
+    var code;
+    var direction = "CONFIG_BASE_DIRECTION_" + this.getTitleValue('MODE');
+    var distance  = Blockly.Python.valueToCode(this, 'DISTANCE', Blockly.Python.ORDER_NONE) || '0.1';
+    code = 'TODO ' + Blockly[direction] + ' ' + distance;
     return code;
 };

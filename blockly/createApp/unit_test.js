@@ -8,13 +8,10 @@ unitTest = function() {
     var blockCnt = 0;
     
     var testWorkspace = Blockly.mainWorkspace;
-    //alert(toolbox.children[0].attributes.name.nodeValue);
     for (var i=0; i<toolbox.children.length; i++) {
         var cat = toolbox.children[i];
         
         unitTestResults.push('<b><u>Test category: ' + cat.attributes.name.nodeValue +'</u></b></br>');
-        //*
-        //var catEntries = Blockly.languageTree[cat];
         var catEntries = cat.children;
         for (var j=0; j<catEntries.length; j++) {
             var entry = catEntries[j].attributes.type.nodeValue;
@@ -61,7 +58,6 @@ unitTest = function() {
             unitTestResults.push('</br>');
 
         }
-        //*/ 
     }
     
     if (failedCnt > 0) { 

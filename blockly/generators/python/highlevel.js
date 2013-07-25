@@ -103,14 +103,6 @@ Blockly.Python.highlevel_move_arm_joint_string = function() {
     return code;
 };
 
-Blockly.Python.highlevel_move_base_distance = function() {
-    var code;
-    var direction = "CONFIG_BASE_DIRECTION_" + this.getTitleValue('MODE');
-    var distance  = Blockly.Python.valueToCode(this, 'DISTANCE', Blockly.Python.ORDER_NONE) || '0.1';
-    code = 'TODO ' + Blockly[direction] + ' ' + distance;
-    return code;
-};
-
 Blockly.Python.highlevel_move_base_to_direction = function() {
     var changeModeState = this.getTitleValue('STATE');
     var code;
