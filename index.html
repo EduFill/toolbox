@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>EduFill: Main-Page</title>
+    </head>
+    <body>
+        <center><h1>ECHORD EduFill - Filling the educational gap in robotics </h1>
+        <p>
+            <a href="http://www.echord.info/wikis/website/edufill">ECHORD Homepage</a>
+        </p>
+    </center>
+    
+    <h2>Contents</h2>
+    
+    <p>
+      On this page you find technical documentation about the ongoing work in
+      the ECHORD EduFill experiment as well as a continuously updated demonstration
+      of the software developed in Edufill.
+    </p>
+
+    <h2>Technical Documentation</h2>
+    
+    <p>
+      <ul>
+        <li><a href="../documents/Showcases.pdf">Description of showcases</a><br />
+        A description of the showcases used to drive the software development 
+        and the creating of educational material.
+        </li>
+        <li>Description of Components<br />
+        A description of the software components used to implement the building 
+        blocks in the blockly programming system.  <i>Currently under revision.</i>
+        </li>
+        <li><a href="../documents/Blockly-Blocks.pdf">Description of the building blocks in Blockly</a><br />
+        A description of the robotic specific building blocks implemented in 
+        EduFill. This also covers the necessary changes to Blockly's core needed
+        to implement our compound building blocks.  This is a living document 
+        under continuous updates.</li>
+      </ul>
+    </p>
+
+
+        <!--
+        <p>
+            <button type="button" onclick="location='tutorial.pdf'">download tutorial</button> 
+        </p>
+        -->
+
+    <h2>Graphical Programming Demo</h2>
+    
+    <p>
+      Here we present the current state of the EduFill graphical programming system.
+      The system is based on the Blockly framework available at <a href="http://code.google.com/p/blockly/">Blockly Homepage</a>
+      Blockly is a framework designed to simplify the creation of web-based 
+      graphical programming tools.  Blockly itself only provides the necessary
+      infrastructure for building programming systems and is target language
+      independent.  For more information visit the Blockly homepage. 
+    </p>
+    
+    <p>
+      For EduFill's use, we made some changes to Blockly and added EduFill specific
+      blocks.  The whole EduFill Software toolbox is composed of three parts:
+      <ul>
+        <li>The actual programming system, presented on this page</li>
+        <li>The Python modules implementing the glue code to combine
+        Blockly blocks into a working application</li>
+        <li>The functional software components implementing the actual 
+        functionality of our EduFill specific Blockly blocks, like 3D 
+        object recognition, base navigation, trajectory planning etc.</li>
+      </ul>
+      The last two parts make up the EduFill runtime environment and form
+      a major part of the EduFill software toolbox. 
+    </p>
+
+    <h3>The EduFill Graphical Programming Workspace</h3>
+        <p>
+            EduFill application workspace: <a href="./blockly/createApp/index.html">blockly</a>
+        </p>        
+
+    <h3>Tutorials for EduFill's version of Blockly</h3>
+
+    <p>
+      We have two tutorials to the EduFill software toolbox:
+      <ul>
+        <li>A tutorial describing the <a href="Tutorials_Runtime.html">setup of the runtime environment</a>. (optional)</li>
+        <li>A short tutorial describing the <a href="Tutorials_Blockly.html">programming system</a>. (recommended reading)</li>
+      </ul>
+    </p>
+
+    <h2>Related Multimedia Material</h2>
+
+        <p>
+      We created a few videos demonstrating mobile manipulation tasks.
+      <ul>
+        <li>Fetch and carry showcase: <a href="video_fetch_and_carry.html">video</a><br/>
+        This is the current test case for developing the software toolbox 
+        (programming system and runtime environment).</li>
+        <li>Simple single-robot assembly: <a href="video_simple_assembly.html">video</a><br />
+        This was the initial showcase case for assembly, which served as 
+        source of requirements towards the programming system and software
+        components.</li>
+      </ul> 
+        </p>
+
+    </body>
+</html>

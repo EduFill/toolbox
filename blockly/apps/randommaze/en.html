@@ -1,0 +1,92 @@
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Random-Maze</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="../../appengine/storage.js"></script>
+  <script type="text/javascript" src="../_soy/soyutils.js"></script>
+  <script type="text/javascript" src="template.js"></script>
+  <script>
+    var MSG = {
+      // Block text.
+      moveForward: 'move forward',
+      move: 'move',
+      forward: 'forward',
+      backward: 'backward',
+      turn: 'turn',
+      left: 'left',
+      right: 'right',
+      randomly: 'randomly',
+      path: 'path',
+      ifPath: 'if path',
+      do: 'do',
+      else: 'else',
+      ahead: 'ahead',
+      toTheLeft: 'to the left',
+      toTheRight: 'to the right',
+      behind: 'behind',
+      repeatUntilFinished: 'repeat until finished',
+      getX: 'get X position',
+      getY: 'get Y position',
+      getDirection: 'get direction',
+      // Tooltips.
+      moveForwardTooltip: 'Moves Pegman forward one space.',
+      moveTooltip: 'Moves Pegman forward or backward one space.',
+      turnTooltip: 'Turns Pegman left or right by 90 degrees.',
+      ifTooltip: 'If there is a path in the specified direction,\n' +
+          'then do some actions.',
+      ifelseTooltip: 'If there is a path in the specified direction,\n' +
+          'then do the first block of actions.\n' +
+          'Otherwise, do the second block of actions.',
+      whileTooltip: 'Repeat the enclosed actions until finish point is reached.',
+      isPathTooltip: 'Returns true if there is a path\n' +
+          'in the specified direction.',
+      getXTooltip: 'Returns Pegman\'s horizontal position.\n' +
+          'Left edge is 1, right edge is 8.',
+      getYTooltip: 'Returns Pegman\'s vertical position.\n' +
+          'Top edge is 1, bottom edge is 8.',
+      getDirectionTooltip: 'Retuns Pegman\'s direction.\n' +
+          'North: 0, East: 1, South: 2, West: 3.',
+      codeTooltip: 'See generated JavaScript code.',
+      linkTooltip: 'Save and link to blocks.',
+      randomizeTooltip2: 'Randomize maze.',
+      hints: "This maze might require using data structures.  Advanced programmers only!",
+      catMaze: 'Maze',
+      catControl: 'Control',
+      catLogic: 'Logic',
+      catMath: 'Math',
+      catLists: 'Lists',
+      catVariables: 'Variables',
+      catProcedures: 'Procedures',
+      // Misc text.
+      runProgram: 'Run Program',
+      resetProgram: '\u00A0 \u00A0 Reset \u00A0 \u00A0',
+      finalLevel: 'Congratulations!\nYou have solved the level. Randomize the maze and try it again. Is your solution still working?',
+      title: 'Random-Maze'
+    };
+    if ('BlocklyStorage' in window) {
+      BlocklyStorage.HTTPREQUEST_ERROR = 'There was a problem with the request.\n';
+      BlocklyStorage.LINK_ALERT = 'Share your blocks with this link:\n\n';
+      BlocklyStorage.HASH_ERROR = 'Sorry, "%1" doesn\'t correspond with any saved Blockly file.';
+      BlocklyStorage.XML_ERROR = 'Could not load your saved file.\n'+
+          'Perhaps it was created with a different version of Blockly?\nXML: ';
+    }
+    var frameSrc10 = ['language/en/_messages.js',
+        'language/common/control.js',
+        'language/common/logic.js',
+        'language/common/math.js',
+        'language/common/lists.js',
+        'language/common/variables.js',
+        'language/common/procedures.js',
+        'generators/javascript/control.js',
+        'generators/javascript/logic.js',
+        'generators/javascript/math.js',
+        'generators/javascript/lists.js',
+        'generators/javascript/variables.js',
+        'generators/javascript/procedures.js'];
+  </script>
+</head>
+<body>
+  <script type="text/javascript" src="maze.js"></script>
+</body>
+</html>

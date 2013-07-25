@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
+	<META NAME="AUTHOR" CONTENT="Björn Kahl">
+	<META NAME="CREATED" CONTENT="20121203;2270700">
+	<META NAME="CHANGEDBY" CONTENT="Björn Kahl">
+	<META NAME="CHANGED" CONTENT="20121203;2415600">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.ctl { font-family: "Arial Unicode MS" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H2 CLASS="western"><A NAME="OS_Installation"></A>OS Installation 
+</H2>
+<P>Components have been tested on Ubuntu 11.10. The distribution can
+be download via this link: 
+</P>
+<P><A HREF="http://releases.ubuntu.com/11.10/">Ubuntu 11.10</A> 
+</P>
+<P>The Ubuntu installation tutorial can be found here: 
+</P>
+<P><A HREF="http://www.techspot.com/community/topics/step-by-step-beginners-guide-to-installing-ubuntu-11-10.172128/">Installation
+Guide</A> 
+</P>
+<H2 CLASS="western"><A NAME="ROS_-_Robot_Operating_System"></A>ROS -
+Robot Operating System 
+</H2>
+<P>In order to use the EduFill software toolbox, the robot software
+framework ROS has to be installed. The version which was verified
+with our components is &quot;electric&quot;. Installation
+instructions for &quot;ros-electric-desktop-full&quot; are on: 
+</P>
+<P><A HREF="http://www.ros.org/wiki/electric/Installation/Ubuntu">ROS
+electric installation instruction</A> 
+</P>
+<P>Additionally, several other packages have to be installed.  For
+this run in an Ubuntu system:</P>
+<P><I>sudo apt-get install ros-electric-desktop-full
+ros-electric-arm-navigation ros-electric-pr2-controllers
+ros-electric-object-manipulation ros-electric-pr2-kinematics
+ros-electric-joystick-drivers ros-electric-laser-drivers
+ros-electric-cob-common ros-electric-pr2-simulator
+ros-electric-openni-kinect ros-electric-pr2-apps
+ros-electric-bosch-drivers python-pygraphviz libmysqlclient-dev
+python-scipy libcap-dev bzr yaml-cpp0.2.6-dev
+ros-electric-orocos-toolchain ros-electric-rtt-ros-integration
+ros-electric-rtt-ros-comm ros-electric-rtt-common-msgs
+ros-electric-rtt-geometry libcap2-bin python-scipy python-setuptools</I>
+</P>
+<H2 CLASS="western"><A NAME="Clone_repositories_and_external_software"></A>
+Clone repositories and external software 
+</H2>
+<P>The EduFill software toolbox is maintained in multiple git
+repositories, currently hosted at
+<A HREF="https://mas.b-it-center.de/git/projects/edufill">https://mas.b-it-center.de/git/projects/edufill</A>.
+ These repositories will soon move to the new project homepage
+currently under construction at <A HREF="http://www.edufill.org/">www.edufill.org</A>.
+</P>
+<P>Firstly, a folder where all components will be stored has to be
+created.Open terminal and execute the command: 
+</P>
+<PRE STYLE="margin-bottom: 0.5cm">mkdir ros_stacks</PRE><P>
+Then Edufill components should be <B>cloned</B>: 
+</P>
+<UL>
+	<LI><P>Create Edufill folder: 
+	</P>
+</UL>
+<PRE>cd ros_stacks
+mkdir Edufill
+cd edufill</PRE>
+<UL>
+	<LI><P>Clone repository: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm">git clone http://mas.b-it-center.de/git/projects/edufill/components </PRE><P>
+Note: Currently password protected while we prepare the first public
+beta.</P>
+<P>Next step is get external software: 
+</P>
+<UL>
+	<LI><P>Create external_software folder: 
+	</P>
+</UL>
+<PRE>cd ros_stacks
+mkdir external_software
+cd external_software</PRE>
+<UL>
+	<LI><P>Clone external software: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm">git clone <A HREF="https://github.com/b-it-bots/hbrs-youbot-hackathon-common">https://github.com/b-it-bots/hbrs-youbot-hackathon-common</A>
+git clone <A HREF="https://github.com/b-it-bots/third-party-software.git">https://github.com/b-it-bots/third-party-software.git</A>
+git clone <A HREF="https://github.com/youbot/youbot_driver.git">https://github.com/youbot/youbot_driver.git</A>
+git clone <A HREF="https://github.com/b-it-bots/youbot-ros-pkg.git">https://github.com/b-it-bots/youbot-ros-pkg.git</A>
+git clone <A HREF="https://github.com/b-it-bots/youbot-manipulation.git">https://github.com/b-it-bots/youbot-manipulation.git</A>
+git clone <A HREF="http://robotics.ccny.cuny.edu/git/ccny-ros-pkg/ccny_vision.git">http://robotics.ccny.cuny.edu/git/ccny-ros-pkg/ccny_vision.git</A>
+</PRE><H2 CLASS="western">
+Allow ROS access to components 
+</H2>
+<P>In order for ROS to gets access to the cloned repository, the file
+~/.bashrc has to be changed.  In terminal: 
+</P>
+<PRE STYLE="margin-bottom: 0.5cm">sudo nano ~/.bashrc</PRE><P>
+Several variables have to be added: 
+</P>
+<UL>
+	<LI><P>$ROS_PACKAGE_PATH for components: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm">export ROS_PACKAGE_PATH=/home/your_user_name/ros_stacks/electric/EduFill:$ROS_PACKAGE_PATH</PRE><P>
+and for external software: 
+</P>
+<PRE STYLE="margin-bottom: 0.5cm">export ROS_PACKAGE_PATH=/home/your_user_name/ros_stacks/external_software:$ROS_PACKAGE_PATH</PRE>
+<UL>
+	<LI><P>ROBOT, which robot will be used: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm">export ROBOT=youbot-edufill2</PRE>
+<UL>
+	<LI><P>ROBOT_ENV, where robot will be operated: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm">export ROBOT_ENV=brsu-home</PRE><P>
+Save file Ctrl+X and press Y. At the end apply changes by: 
+</P>
+<PRE STYLE="margin-bottom: 0.5cm">source ~/.bashrc</PRE>
+<UL>
+	<LI><P>Before launching environment, packages have to be rebuild: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm">rosmake youbot_common youbot_drivers youbot_navigation edufill_2dnav</PRE>
+<UL>
+	<LI><P>To check if all components are installed, launch: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm"> roslaunch youbot_description youbot_publisher.launch</PRE><P>
+If simulation environment Gazebo starts, you will see a youBot in its
+environment.  It indicates the installation of all components and
+software went fine. (Figure 1) 
+</P>
+<P STYLE="margin-bottom: 0cm"><A HREF="https://mas.b-it-center.de/wikis/projects/edufill/index.php/File:Gazeboyoubot_initial_view.png"><FONT COLOR="#000080"><IMG SRC="https://mas.b-it-center.de/wikis/projects/edufill/images/thumb/4/4e/Gazeboyoubot_initial_view.png/600px-Gazeboyoubot_initial_view.png" NAME="Grafik1" ALT="Map" ALIGN=BOTTOM WIDTH=600 HEIGHT=330 BORDER=2></FONT></A>
+</P>
+<P STYLE="margin-bottom: 0cm"><A HREF="https://mas.b-it-center.de/wikis/projects/edufill/index.php/File:Gazeboyoubot_initial_view.png"><FONT COLOR="#000080"><IMG SRC="https://mas.b-it-center.de/wikis/projects/edufill/skins/common/images/magnify-clip.png" NAME="Grafik2" ALIGN=BOTTOM WIDTH=15 HEIGHT=11 BORDER=2></FONT></A></P>
+<P><I>Figure 1.</I> YouBot in Gazebo simulation</P>
+<P>Otherwise, do not hesitate to contact us. Now, Gazebo can be
+closed and a first robot application created.. 
+</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

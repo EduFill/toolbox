@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
+	<META NAME="AUTHOR" CONTENT="Björn Kahl">
+	<META NAME="CREATED" CONTENT="20121203;2423300">
+	<META NAME="CHANGEDBY" CONTENT="Björn Kahl">
+	<META NAME="CHANGED" CONTENT="20121203;3010200">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.ctl { font-family: "Arial Unicode MS" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H2 CLASS="western">Create first robot application 
+</H2>
+<UL>
+	<LI><P>In order to start creating the first robot application, go to
+	link: 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm"><A HREF="https://mas.b-it-center.de/edufill/demo">https://mas.b-it-center.de/edufill/demo</A></PRE><P>
+or 
+</P>
+<PRE STYLE="margin-bottom: 0.5cm"><A HREF="https://test.edufill.org/">https://test.edufill.org</A> (not available now)</PRE>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">On this web page follow the
+	<B>blockly</B> link and the Blockly workspace will appear. Blockly
+	is a web-based, graphical programming editor, where application can
+	be created.</P>
+	<LI><P STYLE="margin-bottom: 0cm">On the web page there are three
+	tabs: Blocks, Python and XML. The Blocks tab consists of several
+	subtabs. In this example we will need only the &quot;High Level&quot;
+	subtab. 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">First, several modules need to be
+	imported. It can be done by using the block <I><B>&quot;start
+	application&quot;</B></I>. This block includes all import modules
+	which the program needs to run. Now we can add blocks to make the
+	robot move, take objects or explore its world and etc. 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Our first task is to move towards
+	an object, fetch it and carry to a goal position on the map
+	(platform). 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm">We assume here, that the map
+		already exist and that it has a number of predefined and named
+		places.</P>
+		<LI><P STYLE="margin-bottom: 0cm">We further assume that the
+		robot's world contains some predefined and named objects.</P>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0cm">Within the &quot;High-Level&quot;
+	subtab, we can find several blocks that can be dragged and dropped
+	to the workspace and connected to <I><B>&quot;start application&quot;</B></I>
+	block.  We will need the following blocks: 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm"><I><B>&quot;move base to (S1)&quot;</B></I>
+				</P>
+		<LI><P STYLE="margin-bottom: 0cm"><I><B>&quot;find and Grasp
+		(cube)&quot;</B></I> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0cm"><I><B>&quot;move arm to
+		(initialpose)&quot;</B></I> 
+		</P>
+		<LI><P><I><B>&quot;move base to (EXIT)&quot;</B></I> 
+		</P>
+	</UL>
+</UL>
+<P>The <I>&quot;S1&quot;</I> is a platform where an object is staying
+and <I>&quot;EXIT&quot;</I> is the position is where robot is out of
+arena. They are predefined as navigation goals.The <B>&quot;initialpose&quot;</B>
+is a position of the arm where the robot avoids collision during base
+movement. 
+</P>
+<P STYLE="margin-bottom: 0cm"><A HREF="https://mas.b-it-center.de/wikis/projects/edufill/index.php/File:Blockly_FetchAndCarryScenario.png"><FONT COLOR="#000080"><IMG SRC="https://mas.b-it-center.de/wikis/projects/edufill/images/thumb/b/b8/Blockly_FetchAndCarryScenario.png/300px-Blockly_FetchAndCarryScenario.png" NAME="Grafik1" ALT="Map" ALIGN=BOTTOM WIDTH=300 HEIGHT=237 BORDER=2></FONT></A>
+</P>
+<P STYLE="margin-bottom: 0cm"><A HREF="https://mas.b-it-center.de/wikis/projects/edufill/index.php/File:Blockly_FetchAndCarryScenario.png"><FONT COLOR="#000080"><IMG SRC="https://mas.b-it-center.de/wikis/projects/edufill/skins/common/images/magnify-clip.png" NAME="Grafik2" ALIGN=BOTTOM WIDTH=15 HEIGHT=11 BORDER=2></FONT></A></P>
+<P><I>Figure 2.</I> Blockly diagram for Fetch and Carry scenario,
+High Level</P>
+<UL>
+	<LI><P>After all wanted blocks are connected in the needed sequence
+	on the workspace (Figure 2), python code for the application can be
+	generated. Click on &quot;<I>Python&quot;</I> tab to see the code in
+	a new workspace. 
+	</P>
+	<LI><P>The generated code is rather small, it mostly consist of
+	control statements (none in this simple example) and calls to the
+	software modules that implement the various blocks.  These software
+	modules are in the components repository and can all be inspected.</P>
+	<LI><P>Next, this code can be stored using the <I>&quot;Save Python&quot;</I>
+	button. 
+	</P>
+	<UL>
+		<LI><P>(Google Chrome) - The Save as Window pop up. Navigate to
+		~/edufill/components/edufill_blockly/scripts/script_default.py file
+		and press Save. 
+		</P>
+		<LI><P>(FireFox) - It will open a new browser tab with python code.
+		Ctrl-A and copy this text to
+		~/edufill/components/edufill_blockly/scripts/script_default.py 
+		</P>
+	</UL>
+</UL>
+<UL>
+	<LI><P>In order to run a simulation of the showcase, one needs to
+	have the EduFill runtime environment installed and setup.  Refer to
+	the <A HREF="Tutorials_Runtime.html">Runtime Environment tutorial</A>.</P>
+	<LI><P> Within the runtime environment, several steps should be
+	done. Open terminal window (this currently only works in the
+	development branch): 
+	</P>
+</UL>
+<PRE STYLE="margin-bottom: 0.5cm"> roslaunch edufill_blockly  blockly_environment.launch</PRE><P>
+Open the second terminal and run the script: 
+</P>
+<PRE> roscd edufill_blockly
+ cd ~/scripts/
+ ./script_defult.py</PRE>
+<UL>
+	<LI><P>Now we should see how the robot moves and takes the object in
+	the Gazebo simulation. On Figure 3 an initial state of the fetch and
+	carry scenario is presented. 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><A HREF="https://mas.b-it-center.de/wikis/projects/edufill/index.php/File:Screenshot-youbotscenariostart.png"><FONT COLOR="#000080"><IMG SRC="https://mas.b-it-center.de/wikis/projects/edufill/images/thumb/1/11/Screenshot-youbotscenariostart.png/600px-Screenshot-youbotscenariostart.png" NAME="Grafik3" ALT="Map" ALIGN=BOTTOM WIDTH=600 HEIGHT=338 BORDER=2></FONT></A>
+</P>
+<P STYLE="margin-bottom: 0cm"><A HREF="https://mas.b-it-center.de/wikis/projects/edufill/index.php/File:Screenshot-youbotscenariostart.png"><FONT COLOR="#000080"><IMG SRC="https://mas.b-it-center.de/wikis/projects/edufill/skins/common/images/magnify-clip.png" NAME="Grafik4" ALIGN=BOTTOM WIDTH=15 HEIGHT=11 BORDER=2></FONT></A></P>
+<P STYLE="margin-bottom: 0cm"><I>Figure 3.</I> YouBot in scenario
+start position, cube on S1 platform</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

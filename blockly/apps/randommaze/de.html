@@ -1,0 +1,96 @@
+<html dir="ltr" lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Labyrinth</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="../../appengine/storage.js"></script>
+  <script type="text/javascript" src="../_soy/soyutils.js"></script>
+  <script type="text/javascript" src="template.js"></script>
+  <script>
+    var MSG = {
+      // Block text.
+      moveForward: 'laufe vorwärts',
+      move: 'laufe',
+      forward: 'vorwärts',
+      backward: 'zurück',
+      turn: 'drehen',
+      left: 'links herum',
+      right: 'rechts herum',
+      randomly: 'zufällig',
+      path: 'ein Pfad ist',
+      ifPath: 'wenn ein Pfad',
+      do: 'mache',
+      else: 'ansonsten',
+      ahead: 'vor Packman',
+      toTheLeft: 'links von Packman',
+      toTheRight: 'rechts von Packman',
+      behind: 'hinter Packman',
+      repeatUntilFinished: 'wiederhole bis zum Ziel',
+      getX: 'get X position',
+      getY: 'get Y position',
+      getDirection: 'get direction',
+      // Tooltips.
+      moveForwardTooltip: 'Packman läuft 1 Feld vor.',
+      moveTooltip: 'Packman läuft 1 Feld vor oder zurück.',
+      turnTooltip: 'Dreht Packman nach links oder rechts.',
+      ifTooltip: 'Führe eine Aktion aus,\n' +
+          'falls sich an der angegebenen Position\n' +
+          'ein Pfad befindet.',
+      ifelseTooltip: 'Falls sich an der angegebenen Position ein Pfad befindet,\n' +
+          'dann führe die erste Anweisung aus.\n' +
+          'Anderfalls führe die zweite Anweisung aus.',
+      whileTooltip: 'Führe die angegebene Aktion aus, bis das Ziel erreicht wurde.',
+      isPathTooltip: 'Returns true if there is a path\n' +
+          'in the specified direction.',
+      getXTooltip: 'Returns Pegman\'s horizontal position.\n' +
+          'Left edge is 1, right edge is 8.',
+      getYTooltip: 'Returns Pegman\'s vertical position.\n' +
+          'Top edge is 1, bottom edge is 8.',
+      getDirectionTooltip: 'Retuns Pegman\'s direction.\n' +
+          'North: 0, East: 1, South: 2, West: 3.',
+      codeTooltip: 'Erzeugten JavaScript Code anzeigen.',
+      linkTooltip: 'Blöcke abspeichern und Link erzeugen.',
+      randomizeTooltip1: 'Randomize start and finish markers.',
+      randomizeTooltip2: 'Randomize maze.',
+      // Level hints.
+      hints: "Dieses Labyrinth ist für fortgeschrittene!",
+      catMaze: 'Labyrinth',
+      catControl: 'Steuerung',
+      catLogic: 'Logik',
+      catMath: 'Mathe',
+      catLists: 'Listen',
+      catVariables: 'Variablen',
+      catProcedures: 'Funktionen',
+      // Misc text.
+      runProgram: 'Programm ausführen',
+      resetProgram: '\u00A0 \u00A0 Zurücksetzen \u00A0 \u00A0',
+      finalLevel: 'Gratulation!\nDu hast das Ziel erreicht. Erzeuge ein neues Labyrinth und versuche es erneut. Wird das Ziel erneut erreicht?',
+      title: 'Labyrinth',
+    };
+    if ('BlocklyStorage' in window) {
+      BlocklyStorage.HTTPREQUEST_ERROR = 'Es gab ein Problem während der HTTP Anfrage.\n';
+      BlocklyStorage.LINK_ALERT = 'Blöcke mit diesem Link teilen:\n\n';
+      BlocklyStorage.HASH_ERROR = 'Entschuldigung, konnte die gespeicherten Blöcke für "%1" nicht finden.';
+      BlocklyStorage.XML_ERROR = 'Kann Sicherungsdatei nicht laden.\n'+
+          'Diese wurde vermutlich mit einer veralteten Version von Blockly erstellt?\nXML: ';
+    }
+    var frameSrc9 = ['language/de/_messages.js'];
+    var frameSrc10 = ['language/de/_messages.js',
+        'language/common/control.js',
+        'language/common/logic.js',
+        'language/common/math.js',
+        'language/common/lists.js',
+        'language/common/variables.js',
+        'language/common/procedures.js',
+        'generators/javascript/control.js',
+        'generators/javascript/logic.js',
+        'generators/javascript/math.js',
+        'generators/javascript/lists.js',
+        'generators/javascript/variables.js',
+        'generators/javascript/procedures.js'];
+  </script>
+</head>
+<body>
+  <script type="text/javascript" src="maze.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly feat. EduFill</title>
+  <!-- --> 
+    <script type="text/javascript" src="../blockly_compressed.js"></script>
+  <!-- -->
+  
+  <script type="text/javascript" src="../changemode.js"></script>
+  
+  <script type="text/javascript" src="../generators/python.js"></script>
+  <script type="text/javascript" src="../generators/python/control.js"></script>
+  <script type="text/javascript" src="../generators/python/logic.js"></script>
+  <script type="text/javascript" src="../generators/python/math.js"></script>
+  <script type="text/javascript" src="../generators/python/text.js"></script>
+  <script type="text/javascript" src="../generators/python/lists.js"></script>
+  <script type="text/javascript" src="../generators/python/variables.js"></script>
+  <script type="text/javascript" src="../generators/python/procedures.js"></script>
+  <script type="text/javascript" src="../generators/python/_code.js"></script>
+  <script type="text/javascript" src="../language/en/_messages.js"></script>
+  
+  <script type="text/javascript" src="../language/eduFill/config1.js"></script>
+  
+  <script type="text/javascript" src="../language/common/control.js"></script>
+  <script type="text/javascript" src="../language/common/logic.js"></script>
+  <script type="text/javascript" src="../language/common/math.js"></script>
+  <script type="text/javascript" src="../language/common/text.js"></script>
+  <script type="text/javascript" src="../language/common/lists.js"></script>
+  <script type="text/javascript" src="../language/common/variables.js"></script>
+  <script type="text/javascript" src="../language/common/procedures.js"></script>
+  
+  <script type="text/javascript" src="../generators/python/units.js"></script>
+  <script type="text/javascript" src="../generators/python/highlevel.js"></script>
+  <script type="text/javascript" src="../generators/python/midlevel.js"></script>
+  <script type="text/javascript" src="../generators/python/lowlevel.js"></script>
+  <script type="text/javascript" src="../generators/python/rosmessage.js"></script>
+  <script type="text/javascript" src="../generators/python/action.js"></script>
+  <script type="text/javascript" src="../generators/python/matrix.js"></script>
+  <script type="text/javascript" src="../generators/python/dummy.js"></script>
+  <script type="text/javascript" src="../language/en/_eduFill_messages.js"></script>
+  
+  <script id="units" type="text/javascript" src="../language/common/units.js"></script>
+  <script id="highlevel" type="text/javascript" src="../language/common/highlevel.js"></script>
+  <script id="midlevel" type="text/javascript" src="../language/common/midlevel.js"></script>
+  <script id="lowlevel" type="text/javascript" src="../language/common/lowlevel.js"></script>
+  <script id="rosmessage" type="text/javascript" src="../language/common/rosmessage.js"></script>
+  <script id="action" type="text/javascript" src="../language/common/action.js"></script>
+  <script id="action" type="text/javascript" src="../language/common/matrix.js"></script>
+  <script id="dummy" type="text/javascript" src="../language/common/dummy.js"></script>
+  
+  <style>
+    html, body {
+      background-color: #fff;
+      margin: 0;
+      padding:0;
+      overflow: hidden;
+    }
+    .blocklySvg {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <script>
+      
+    function init() {
+      var toolbox = null;
+      if (window.parent.document) {
+        toolbox = window.parent.document.getElementById('toolbox');
+      }
+      Blockly.inject(document.body, {path: '../', toolbox: toolbox});
+      
+      if (window.parent.init) {
+        // Let the top-level application know that Blockly is ready.
+        window.parent.init(Blockly);
+      } else {
+        // Attempt to diagnose the problem.
+        var msg = 'Error: Unable to communicate between frames.\n\n';
+        if (window.parent == window) {
+          msg += 'Try loading index.html instead of frame.html';
+        } else if (window.location.protocol == 'file:') {
+          msg += 'This may be due to a security restriction preventing\n' +
+              'access when using the file:// protocol.\n' +
+              'http://code.google.com/p/chromium/issues/detail?id=47416';
+        }
+        alert(msg);
+      }
+    }
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>
