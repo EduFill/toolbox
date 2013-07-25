@@ -22,10 +22,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
- 
-goog.provide('Blockly.Language.unit');
-
-goog.require('Blockly.Language');
 
 Blockly.Language.units_duration = {
     helpUrl: null,
@@ -33,12 +29,12 @@ Blockly.Language.units_duration = {
         var dropdown = new Blockly.FieldDropdown(this.OPERATORS);
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         this.appendValueInput('VALUE')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle('(duration in')
             .appendTitle(dropdown, 'MODE')
             .appendTitle(')');
-        this.setOutput(true, Number);
+        this.setOutput(true, 'Number');
         this.setInputsInline(true);
         this.setTooltip(
                         'Indicate that these value is considered as duration.\n' +
@@ -69,12 +65,12 @@ Blockly.Language.units_distance = {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         var dropdown = new Blockly.FieldDropdown(this.OPERATORS); 
         this.appendValueInput('VALUE')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle('(distance in')
             .appendTitle(dropdown, 'MODE')
             .appendTitle(')');
-        this.setOutput(true, Number);
+        this.setOutput(true, 'Number');
         this.setInputsInline(true);
         this.setTooltip(
                         'Indicate that these value is considered as a distance.\n' +
@@ -105,12 +101,12 @@ Blockly.Language.units_velocity = {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         var dropdown = new Blockly.FieldDropdown(this.OPERATORS); 
         this.appendValueInput('VALUE')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle('(velocity in')
             .appendTitle(dropdown, 'MODE')
             .appendTitle(')');
-        this.setOutput(true, Number);
+        this.setOutput(true, 'Number');
         this.setInputsInline(true);
         this.setTooltip(
                         'Indicate that these value is considered as velocity.\n' +
@@ -143,26 +139,26 @@ Blockly.Language.units_6dPose = {
         this.appendValueInput('LIN_X')
             .appendTitle('x')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendValueInput('LIN_Y')
             .appendTitle('y')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('LIN_Z')
             .appendTitle('z')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('ROLL')
             .appendTitle('roll (rad)')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('PITCH')
             .appendTitle('pitch (rad)')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('YAW')
             .appendTitle('yaw (rad)')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.setOutput(true,'Pose6D');
         this.setTooltip(
@@ -199,7 +195,7 @@ Blockly.Language.units_get_6dpose_element = {
             .appendTitle(dropdown, 'MODE')
             .appendTitle('of 6D pose')
             .setCheck('Pose6D');
-        this.setOutput(true,Number);
+        this.setOutput(true, 'Number');
         this.setTooltip(
                         'Get one of the elements of a 6D pose.\n' +
                         '---\n' +
@@ -223,7 +219,7 @@ Blockly.Language.units_6dpose_element_operators =
      ['z','LIN_Z'],
      ['roll','ROLL'],
      ['pitch','PITCH'],
-     ['yaw','YAW'],
+     ['yaw','YAW']
      ]
 
 Blockly.Language.units_set_6dpose_element = {
@@ -239,7 +235,7 @@ Blockly.Language.units_set_6dpose_element = {
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('VALUE')
             .appendTitle('to')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -285,7 +281,7 @@ Blockly.Language.units_joints = {
         for (var i = 0; i < this.jointCount_; i++) {
             this.appendValueInput('JOINTVALUE' + i)
                 .appendTitle('joint value ' + (i+1))
-                .setCheck(Number)
+                .setCheck('Number')
                 .setAlign(Blockly.ALIGN_RIGHT);
         }
     },
@@ -315,7 +311,7 @@ Blockly.Language.units_joints = {
         while (jointBlock) {
             var input = this.appendValueInput('JOINTVALUE' + this.jointCount_) 
                             .appendTitle('joint value ' + (this.jointCount_+1))
-                            .setCheck(Number)
+                            .setCheck('Number')
                             .setAlign(Blockly.ALIGN_RIGHT);
                 
               // Reconnect any child blocks.
@@ -367,13 +363,13 @@ Blockly.Language.units_get_joints_element = {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         this.appendValueInput('VALUE_POS')
             .appendTitle('get value ')
-            .setCheck(Number)
+            .setCheck('Number')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('JOINTS')
             .appendTitle('of joints')
             .setCheck('JointAngles')
             .setAlign(Blockly.ALIGN_RIGHT);
-        this.setOutput(true, Number);
+        this.setOutput(true, 'Number');
         this.setInputsInline(true);
     }
 };
@@ -384,13 +380,13 @@ Blockly.Language.units_set_joints = {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         this.appendValueInput('VALUE_POS')
             .appendTitle('set value')
-            .setCheck(Number)
+            .setCheck('Number')
         this.appendValueInput('JOINTS')
             .appendTitle('of joints')
             .setCheck('JointAngles')
         this.appendValueInput('NEW_VALUE')
             .appendTitle('to')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle('(rad)');
         this.setPreviousStatement(true);
@@ -405,8 +401,8 @@ Blockly.Language.units_degToRad = {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         this.appendValueInput('VALUE')
             .appendTitle('convert degree to radian')
-            .setCheck(Number);
-        this.setOutput(true, Number);
+            .setCheck('Number');
+        this.setOutput(true, 'Number');
         this.setTooltip(
                         'Convert a value from degree to radian.\n' +
                         '---\n' +
@@ -427,8 +423,8 @@ Blockly.Language.units_radToDeg = {
         this.setColour(Blockly.LANG_UNITS_COLOUR);
         this.appendValueInput('VALUE')
             .appendTitle('convert radian to degree')
-            .setCheck(Number);
-        this.setOutput(true, Number);
+            .setCheck('Number');
+        this.setOutput(true, 'Number');
         this.setTooltip(
                         'Convert a value from radian to degree.\n' +
                         '---\n' +
@@ -450,15 +446,15 @@ Blockly.Language.units_eulerToQuaternion = {
     this.appendDummyInput()
         .appendTitle("convert euler to quaternion");
     this.appendValueInput("ROLL")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("roll (rad)");
     this.appendValueInput("PITCH")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("pitch (rad)");
     this.appendValueInput("YAW")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("yaw (rad)");
     this.setOutput(true, 'Quaternion');
@@ -486,19 +482,19 @@ Blockly.Language.units_quaternionToEuler = {
     this.appendDummyInput()
         .appendTitle("convert quaternion to euler");
     this.appendValueInput("X")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("x");
     this.appendValueInput("Y")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("y");
     this.appendValueInput("Z")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("z");
     this.appendValueInput("W")
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("w");
     this.setOutput(true, 'Euler');

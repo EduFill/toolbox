@@ -21,10 +21,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
- 
-goog.provide('Blockly.Language.lowlevel');
-
-goog.require('Blockly.Language');
 
 Blockly.Language.lowlevel_package_main = {
     helpUrl: null,
@@ -35,7 +31,7 @@ Blockly.Language.lowlevel_package_main = {
             .appendTitle(new Blockly.FieldTextInput('ros_package_name',null),'ROSPaName')
             .appendTitle('package');
         this.appendValueInput('IMPORT0')
-                .setCheck([String, Blockly.LANG_CONNECTION_TYPE_IMPORT])
+                .setCheck(['String', Blockly.LANG_CONNECTION_TYPE_IMPORT])
                 .appendTitle(Blockly.LANG_LOW_LEVEL_IMPORT_MSG)
                 .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('FROM_IMPORT0')
@@ -93,7 +89,7 @@ Blockly.Language.lowlevel_package_main = {
         this.importCount_ = window.parseInt(xmlElement.getAttribute('imports'), 10);
         for (var i = 0; i < this.importCount_; i++) {
             this.appendValueInput('IMPORT' + i)
-                .setCheck([String, Blockly.LANG_CONNECTION_TYPE_IMPORT])
+                .setCheck(['String', Blockly.LANG_CONNECTION_TYPE_IMPORT])
                 .appendTitle(Blockly.LANG_LOW_LEVEL_IMPORT_MSG)
                 .setAlign(Blockly.ALIGN_RIGHT);
         }
@@ -152,7 +148,7 @@ Blockly.Language.lowlevel_package_main = {
         while(statementBlock) {
             if(statementBlock.type == 'lowlevel_application_import') {
                 var input = this.appendValueInput('IMPORT' + this.importCount_)
-                                .setCheck([String,Blockly.LANG_CONNECTION_TYPE_IMPORT])
+                                .setCheck(['String',Blockly.LANG_CONNECTION_TYPE_IMPORT])
                                 .setAlign(Blockly.ALIGN_RIGHT);
                 input.appendTitle(Blockly.LANG_LOW_LEVEL_IMPORT_MSG);
                 this.importCount_++;
@@ -234,7 +230,7 @@ Blockly.Language.lowlevel_application_import = {
         this.appendDummyInput().appendTitle(Blockly.LANG_LOW_LEVEL_IMPORT_MSG);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setTooltip('TODO');
+        this.setTooltip('');
         this.contextMenu = false;
     }
 };
@@ -245,7 +241,7 @@ Blockly.Language.lowlevel_application_from_import = {
         this.appendDummyInput().appendTitle(Blockly.LANG_LOW_LEVEL_FROM_IMPORT_MSG);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setTooltip('TODO');
+        this.setTooltip('');
         this.contextMenu = false;
     }
 }; 
@@ -292,7 +288,7 @@ Blockly.Language.lowlevel_create_publisher = {
         this.appendDummyInput()
             .appendTitle(new Blockly.FieldVariable('pub'), 'VAR');
         this.appendValueInput('NODE')
-            .setCheck(String)
+            .setCheck('String')
             .appendTitle(' = create publisher to topic:');
         this.appendValueInput('TYPE')
             .setCheck(Blockly.LANG_CONNECTION_TYPE_ROS_MESSAGE)
@@ -359,7 +355,7 @@ Blockly.Language.lowlevel_subscriber = {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle('subscribe');
         this.appendValueInput('NODE')
-            .setCheck(String)
+            .setCheck('String')
             .appendTitle('to topic:');
         this.appendValueInput('TYPE')
             .setCheck(Blockly.LANG_CONNECTION_TYPE_ROS_MESSAGE)
@@ -391,7 +387,7 @@ Blockly.Language.lowlevel_ros_init_node = {
         var checkbox_anonym = new Blockly.FieldCheckbox('FALSE');
         var checkbox_sig = new Blockly.FieldCheckbox('FALSE');
         this.appendValueInput('NAME')
-            .setCheck([String, Blockly.LANG_CONNECTION_TYPE_ROS_NODE])
+            .setCheck(['String', Blockly.LANG_CONNECTION_TYPE_ROS_NODE])
             .appendTitle('init node  name:');
         this.appendDummyInput()
             .appendTitle(checkbox_anonym, 'TOGGLE_ANONYM')
@@ -449,12 +445,12 @@ Blockly.Language.lowlevel_ros_log = {
             .appendTitle('ROS log <')
             .appendTitle(dropdown, 'MODE');
         this.appendValueInput('LOG_MSG')
-            .setCheck(String)
+            .setCheck('String')
             .appendTitle('>:');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setInputsInline(true);
-        this.setTooltip('TODO');
+        this.setTooltip('');
     }
 };
 
@@ -473,11 +469,11 @@ Blockly.Language.lowlevel_ros_sleep = {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendValueInput('TIME')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('ROS sleep');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setTooltip('TODO');
+        this.setTooltip('');
     }
 };
 
@@ -500,7 +496,7 @@ Blockly.Language.lowlevel_get_ros_time = {
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle('get ros time');
-        this.setTooltip('TODO');
+        this.setTooltip('');
         this.setOutput(true);
     }
 };
@@ -523,7 +519,7 @@ Blockly.Language.lowlevel_laserscan_ranges_and_angles = {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput()
             .appendTitle('laser scan data (full range)');
-        this.setOutput(true, Array);
+        this.setOutput(true, 'Array');
         this.setTooltip(
                         'Provide the full set of laser scan data.\n' +
                         '---\n' +
@@ -541,11 +537,11 @@ Blockly.Language.lowlevel_laserscan_inrange = {
         this.appendDummyInput().appendTitle('laser scan data');
         this.appendValueInput('FROM')
             .appendTitle('from angle (rad)')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendValueInput('TO')
             .appendTitle('to angle (rad)')
-            .setCheck(Number);
-        this.setOutput(true, Array);
+            .setCheck('Number');
+        this.setOutput(true, 'Array');
         this.setInputsInline(true);
         this.setTooltip(
                         'Provide data for laser scans within a certain angular range.\n' +
@@ -568,7 +564,7 @@ Blockly.Language.lowlevel_laserscan_closest_distance = {
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle('laser scan with closest distance');
-        this.setOutput(true, Array);
+        this.setOutput(true, 'Array');
         this.setTooltip(
                         'Determine the laser scan value with the closest distance.\n' +
                         '---\n' +
@@ -653,15 +649,15 @@ Blockly.Language.lowlevel_quaternion_from_euler = {
         this.appendValueInput('ROLL')
             .appendTitle('roll (rad)')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendValueInput('PITCH')
             .appendTitle('pitch (rad)')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendValueInput('YAW')
             .appendTitle('yaw (rad)')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.setOutput(true, Blockly.LANG_CONNECTION_TYPE_QUATERNION);
         this.setTooltip('');
     }
@@ -673,12 +669,12 @@ Blockly.Language.lowlevel_is_wall = {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendValueInput('ANGLE')
             .appendTitle('check for obstacle at angle (rad)')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendValueInput('DISTANCE')
             .appendTitle('and max. distance (m) of')
-            .setCheck(Number);
+            .setCheck('Number');
         this.setInputsInline(true);
-        this.setOutput(true, Boolean);
+        this.setOutput(true, 'Boolean');
         this.setTooltip(
                         'Test whether something (e.g. an obstacle or a wall) is closer than the specified distance.\n'+
                         '---\n' +

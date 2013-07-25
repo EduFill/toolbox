@@ -21,10 +21,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
- 
-goog.provide('Blockly.Language.action');
-
-goog.require('Blockly.Language');
 
 Blockly.Language.action_simple_action_client = {
     helpUrl: null,

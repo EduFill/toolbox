@@ -22,10 +22,6 @@
  */
  'use strict';
 
-goog.provide('Blockly.Language.dummy');
-
-goog.require('Blockly.Language');
-
 Blockly.Language.EDUFILL_CHANGEMODE_OPERATORS = 
     [[Blockly.EDUFILL_CHANGEMODE_OPERATORS_CLOSE, 'CLOSE'],
      [Blockly.EDUFILL_CHANGEMODE_OPERATORS_OPEN, 'OPEN']];
@@ -278,7 +274,7 @@ Blockly.Language.turn_robot = {
     init: function() {
         this.setColour(Blockly.LANG_DUMMY_COLOUR);
         this.appendDummyInput().appendTitle('turn robot');
-        this.appendValueInput('DEGREE').setCheck(Number).appendTitle('about');
+        this.appendValueInput('DEGREE').setCheck('Number').appendTitle('about');
         this.appendDummyInput().appendTitle('degree');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -535,13 +531,13 @@ Blockly.Language.tftransform = {
         this.appendDummyInput()
             .appendTitle('get transform');
         this.appendValueInput('OBJ_FRAME')
-            .setCheck(String)
+            .setCheck('String')
             .appendTitle('from object frame:');
         this.appendValueInput('REF_FRAME')
-            .setCheck(String)
+            .setCheck('String')
             .appendTitle('to reference frame:');
         this.appendValueInput('DURATION')
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('and search for');
         this.appendDummyInput()
             .appendTitle('second(s)');

@@ -127,7 +127,7 @@ Blockly.Python.matrix_add_and_sub = function() {
 
 Blockly.Python.matrix_add_and_sub_operators = {
     ADD: '+',
-    SUB: '-',
+    SUB: '-'
 };
 
 Blockly.Python.matrix_create_frame = function() {

@@ -21,11 +21,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
 'use strict';
- 
-goog.provide('Blockly.Language.matrix');
-
-goog.require('Blockly.Language');
-
 
 Blockly.Language.vector = {
     helpUrl: null,
@@ -56,7 +51,7 @@ Blockly.Language.vector = {
             this.appendValueInput('VALUE' + i)
                 .appendTitle('value '  + (i+1))
                 .setAlign(Blockly.ALIGN_RIGHT)
-                .setCheck(Number);
+                .setCheck('Number');
         }
     },
     decompose: function(workspace) {
@@ -86,7 +81,7 @@ Blockly.Language.vector = {
             var input = this.appendValueInput('VALUE' + this.valueCount_)
                             .appendTitle('value ' + (this.valueCount_+1))
                             .setAlign(Blockly.ALIGN_RIGHT)
-                            .setCheck(Number);
+                            .setCheck('Number');
                 
               // Reconnect any child blocks.
               if (valueBlock.valueConnection_) {
@@ -267,7 +262,7 @@ Blockly.Language.row = {
             this.appendValueInput('COL' + i)
                 .appendTitle('column ' + (i+1))
                 .setAlign(Blockly.ALIGN_RIGHT)
-                .setCheck(Number);
+                .setCheck('Number');
         }
     },
     decompose: function(workspace) {
@@ -297,7 +292,7 @@ Blockly.Language.row = {
             var input = this.appendValueInput('COL' + this.columnCount_)
                             .appendTitle('column ' + (this.columnCount_+1))
                             .setAlign(Blockly.ALIGN_RIGHT)
-                            .setCheck(Number);
+                            .setCheck('Number');
                 
               // Reconnect any child blocks.
               if (colBlock.valueConnection_) {

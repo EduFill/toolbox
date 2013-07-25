@@ -21,10 +21,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
- 
-goog.provide('Blockly.Language.rosmessages');
-
-goog.require('Blockly.Language');
 
 Blockly.Language.ros_string_msg_type = {
     helpUrl: null,
@@ -169,15 +165,15 @@ Blockly.Language.rosmessage_base_pose_msg = {
         this.appendDummyInput().appendTitle('base pose message');
         this.appendValueInput('X')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('x');
         this.appendValueInput('Y')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('y');
         this.appendValueInput('Z')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('z');
         this.appendValueInput('Q')
             .setCheck('Quaternion')
@@ -213,11 +209,11 @@ Blockly.Language.rosmessage_joint_state_msg_name= {
         this.appendValueInput('PREFIX')
             .appendTitle(' = prefix')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(String);
+            .setCheck('String');
         this.appendValueInput('NUMBER_OF_JOINTS')
             .appendTitle('+ counting number (for all joints until')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle(')');
         this.setInputsInline(true);
@@ -249,7 +245,7 @@ Blockly.Language.rosmessage_joint_state_msg_position= {
         this.appendValueInput('NUMBER_OF_JOINTS')
             .appendTitle('(for all joints until')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendDummyInput()
             .appendTitle(')');
         this.setInputsInline(true);
@@ -275,13 +271,13 @@ Blockly.Language.rosmessage_joint_state_msg_velocity= {
             .appendTitle(new Blockly.FieldVariable('jp'), 'VAR')
             .appendTitle('.velocity');
         this.appendValueInput('INDEX')
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('[')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('VALUE')
             .appendTitle('] = ')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.setInputsInline(true);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -305,13 +301,13 @@ Blockly.Language.rosmessage_joint_state_msg_effort= {
             .appendTitle(new Blockly.FieldVariable('jp'), 'VAR')
             .appendTitle('.effort');
         this.appendValueInput('INDEX')
-            .setCheck(Number)
+            .setCheck('Number')
             .appendTitle('[')
             .setAlign(Blockly.ALIGN_RIGHT);
         this.appendValueInput('VALUE')
             .appendTitle('] = ')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(Number);
+            .setCheck('Number');
         this.setInputsInline(true);
         this.setPreviousStatement(true);
         this.setNextStatement(true);

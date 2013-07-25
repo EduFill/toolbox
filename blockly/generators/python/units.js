@@ -73,7 +73,7 @@ Blockly.Python.units_6dpose_element_operators = {
     LIN_Z: '[2]', 
     ROLL:  '[3]', 
     PITCH: '[4]', 
-    YAW:   '[5]', 
+    YAW:   '[5]' 
 }
 
 Blockly.Python.units_set_6dpose_element = function() {

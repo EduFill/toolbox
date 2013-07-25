@@ -21,10 +21,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
- 
-goog.provide('Blockly.Language.highlevel');
-
-goog.require('Blockly.Language');
 
 Blockly.Language.highlevel_application = {
     helpUrl: null,
@@ -190,7 +186,7 @@ Blockly.Language.highlevel_move_base_distance = {
             .appendTitle('direction')
             .appendTitle(this.dropdown, 'MODE')
             .appendTitle(this.titleText)
-            .setCheck(Number);
+            .setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
     }
@@ -223,7 +219,7 @@ Blockly.Language.highlevel_move_base_to_direction = {
             .appendTitle('direction')
             .appendTitle(this.dropdown, 'MODE')
             .appendTitle('duration (sec)')
-            .setCheck(Number);
+            .setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(
@@ -665,8 +661,8 @@ Blockly.Language.highlevel_move_arm_through_ik = {
         this.appendValueInput(inputPose6d)
             .appendTitle('6D pose')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(['Pose6D', Array]);
-        this.setOutput(true, Boolean);
+            .setCheck(['Pose6D', 'Array']);
+        this.setOutput(true, 'Boolean');
         this.setTooltip(
                         'Move robot arm to a cartesian pose.\n' +
                         'Note: No obstacle avoidance is implemented yet.\n' +
@@ -778,7 +774,7 @@ Blockly.Language.highlevel_move_arm_through_ik = {
             block.appendValueInput(inputPose6d)
                 .appendTitle('6D pose')
                 .setAlign(Blockly.ALIGN_RIGHT)
-                .setCheck(['Pose6D', Array]);
+                .setCheck(['Pose6D', 'Array']);
         }
         // To make sure that the reconnectMonitor is intuitiv
         block.moveInputBefore(inputPose6d, block.changemode.appendInput);
@@ -836,7 +832,7 @@ Blockly.Language.highlevel_check_wall = {
                 block.disposeChangeMode();
             }
         });
-        this.setOutput(true, Boolean);
+        this.setOutput(true, 'Boolean');
         this.dropdown = new Blockly.FieldDropdown(Blockly.CONFIG_WALL);
         this.appendDummyInput()
             .appendTitle(this.image)

@@ -21,10 +21,6 @@
  * @author marc.wollenweber@smail.inf.h-brs.de 
  */
  'use strict';
- 
-goog.provide('Blockly.Language.midlevel');
-
-goog.require('Blockly.Language');
 
 Blockly.Language.midlevel_move_gripper = {
     helpUrl: null,
@@ -49,11 +45,11 @@ Blockly.Language.midlevel_move_gripper = {
         this.appendValueInput('GRIPPER_LEFT')
             .setAlign(Blockly.ALIGN_RIGHT)
             .appendTitle('left gripper value')
-            .setCheck(Number);
+            .setCheck('Number');
         this.appendValueInput('GRIPPER_RIGHT')
             .setAlign(Blockly.ALIGN_RIGHT)
             .appendTitle('right gripper value')
-            .setCheck(Number);
+            .setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         var thisBlock = this;
@@ -115,7 +111,6 @@ Blockly.Language.midlevel_move_gripper = {
         var createPubBlock = block.changemode.appendNoneMutationStatement('lowlevel_create_publisher');
         var changemodeCreatePub = new Blockly.ChangeMode(createPubBlock)
         changemodeCreatePub.appendNoneMutationOutput('text',1).setTitleValue('arm_1/gripper_controller/position_command','TEXT');
-        //changemodeCreatePub.appendNoneMutationOutput('ros_other_msg_type',2).setTitleValue('JointPositions','MSG_NAME');
         changemodeCreatePub.appendNoneMutationOutput('ros_jointpositions_msg_type',2);
         var sleepBlock = block.changemode.appendNoneMutationStatement('lowlevel_ros_sleep');
         new Blockly.ChangeMode(sleepBlock).appendNoneMutationOutput('math_number',1).setTitleValue('0.5','NUM');
@@ -155,7 +150,7 @@ Blockly.Language.midlevel_reference_frame = {
         this.appendDummyInput()
             .appendTitle('reference frame')
             .appendTitle(dropdown,'MODE');
-        this.setOutput(true, String);
+        this.setOutput(true, 'String');
         var thisBlock = this;
         this.setTooltip(
                         'Specify the frame of reference for an action, \n' + 
@@ -186,27 +181,27 @@ Blockly.Language.midlevel_ros_move_base_twist = {
     this.setNextStatement(true);
     this.appendValueInput('L_X')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck(Number)
+        .setCheck('Number')
         .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_X); // linear x
     this.appendValueInput('L_Y')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck(Number)
+        .setCheck('Number')
         .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_Y); // linear y
     this.appendValueInput('L_Z')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck(Number)
+        .setCheck('Number')
         .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_LINEAR_Z); // linear z
     this.appendValueInput('A_X')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck(Number)
+        .setCheck('Number')
         .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_X);// angular x
     this.appendValueInput('A_Y')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck(Number)
+        .setCheck('Number')
         .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_Y);// angular y
     this.appendValueInput('A_Z')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck(Number)
+        .setCheck('Number')
         .appendTitle(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_ANGULAR_Z);// angular z
     this.setTooltip(Blockly.LANG_MID_LEVEL_MOVE_BASE_TWIST_TOOLTIP);
     this.setInputsInline(false);
@@ -257,7 +252,7 @@ Blockly.Language.midlevel_move_arm_joint_position = {
         this.appendValueInput(this.getInputJnt)
             .appendTitle('<joint list>')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(['JointAngles',Array]);
+            .setCheck(['JointAngles', 'Array']);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(
@@ -568,12 +563,12 @@ Blockly.Language.midlevel_ik_checker = {
         this.appendValueInput('REF')
             .appendTitle('frame of reference')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(String);
+            .setCheck('String');
         this.appendValueInput('POSE6D')
             .appendTitle('6D pose')
             .setAlign(Blockly.ALIGN_RIGHT)
             .setCheck('Pose6D');
-        this.setOutput(true,Boolean); 
+        this.setOutput(true, 'Boolean'); 
         this.setTooltip(
                         'Determine if a cartesian pose can be reached.\n' +
                         '---\n' +
@@ -606,12 +601,12 @@ Blockly.Language.midlevel_ik_solver = {
         this.appendValueInput('REF')
             .appendTitle('frame of reference')
             .setAlign(Blockly.ALIGN_RIGHT)
-            .setCheck(String);
+            .setCheck('String');
         this.appendValueInput('POSE6D')
             .setAlign(Blockly.ALIGN_RIGHT)
             .appendTitle('6D pose')
             .setCheck('Pose6D');
-        this.setOutput(true,[Array, 'JointAngles']); 
+        this.setOutput(true,['Array', 'JointAngles']); 
         this.setTooltip(
                         'Calculate the joint positions (angles) depending on a given cartesian pose and a frame of reference.\n' +
                         '---\n' +
@@ -643,7 +638,7 @@ Blockly.Language.midlevel_fk_solver = {
             .appendTitle('<joint list>')
             .setAlign(Blockly.ALIGN_RIGHT)
             .setCheck('JointAngles');
-        this.setOutput(true,[Array, 'Pose6D']); 
+        this.setOutput(true,['Array', 'Pose6D']); 
         this.setTooltip(
                         'According to a set of joint angles calculate the resulting cartesian pose (6D pose).\n' +
                         '---\n' + 
@@ -671,7 +666,7 @@ Blockly.Language.midlevel_mapping = {
                 if(!block.getInput('FILE')) {
                     block.appendValueInput('FILE')
                         .appendTitle('to file')
-                        .setCheck(String);
+                        .setCheck('String');
                 }
             }
             else {
@@ -712,7 +707,7 @@ Blockly.Language.midlevel_mapping = {
             if(!block.getInput('FILE')) {
                 block.appendValueInput('FILE')
                 .appendTitle('to file')
-                .setCheck(String);
+                .setCheck('String');
             }
         }
     }
@@ -750,7 +745,7 @@ Blockly.Language.midlevel_check_wall = {
                 block.disposeChangeMode();
             }
         });
-        this.setOutput(true, Boolean);
+        this.setOutput(true, 'Boolean');
         this.dropdown = new Blockly.FieldDropdown(Blockly.CONFIG_WALL);
         this.appendDummyInput()
             .appendTitle(this.image)
@@ -760,7 +755,7 @@ Blockly.Language.midlevel_check_wall = {
             .appendTitle('to the')
             .appendTitle(this.dropdown, 'MODE')
             .appendTitle('with max. distance (m) of')
-            .setCheck(Number);
+            .setCheck('Number');
         this.setInputsInline(true);
     },
     mutationToDom: function() {
@@ -837,7 +832,7 @@ Blockly.Language.midlevel_check_wall = {
                 .appendTitle('to the')
                 .appendTitle(block.dropdown, 'MODE')
                 .appendTitle('with max. distance (m) of')
-                .setCheck(Number);
+                .setCheck('Number');
             block.setInputsInline(true);
         }
         block.setInputsInline(true);
