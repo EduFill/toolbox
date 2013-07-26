@@ -30,9 +30,18 @@
  * 
  * example:
  * * this.changemode = new Blockly.ChangeMode(this, 'INCHANGEMODE');
- * * var checkbox = new Blockly.FieldCheckbox([...]);
+ * * var checkbox = new Blockly.FieldCheckbox('FALSE', function(changeModeState) {
+            var block = this.sourceBlock_;
+
+            if(changeModeState == true) {
+                block.showChangeMode();
+            }
+            else if (changeModeState == false) {
+                block.disposeChangeMode();
+            }
+        });
  * * ...
- * * [this.append{Value|Statement|Dummy}Input].[...].appendTitle(checkbox, 'STATE');
+ * * [this.append{Value|Statement|Dummy}Input].appendTitle(checkbox, 'STATE');
  * 
  * An additional ChangeMode generator is provided within createChangeMode folder. 
  * Please be aware that the generator is thought to be helpful and not complete.
@@ -74,7 +83,7 @@ Blockly.ChangeMode.prototype.setChangeMode = function (isSet, type) {
             }
         }
         else {alert('Unknown type within setChangeMode');}
-        block.setWarningText('You activated the next level of complexity. If you are not familiar with that level feel free to deactivate it or investigate further.');
+        block.setWarningText('You activated the next level of complexity. If you are not familiar with that level feel free to investigate further or deactivate it and use it later.');
     }
     else {
         if(block.getInput(this.appendInput)) {
@@ -88,6 +97,9 @@ Blockly.ChangeMode.prototype.setChangeMode = function (isSet, type) {
     }
 };
 
+// Change the current statement input area to the next
+// e.g. for the controls_if block: Move from the actual DO0 statement input area to the next (DO1, ELSE ...)
+// All following append operation (append(None)Mutation(Output)Statement) are with reference to the new input area
 Blockly.ChangeMode.prototype.changeStatementInputTo = function(appendInputName) {
     this.appendInput = appendInputName;
     this.statementConnection = null;
@@ -189,6 +201,7 @@ Blockly.ChangeMode.validateAndDetermineValueInputPosition = function(inputBlock,
     return Blockly.ChangeMode.getPositionInInputList(inputBlock, 'value', valueInputPosition);
 };
 
+// Perform a block mutation operation, which is normally applied by the user via drag&drop actions
 Blockly.ChangeMode.performBlockMutation = function(block, mutationList) {
     var storeInitValue = [];
     if (mutationList) {
@@ -203,7 +216,7 @@ Blockly.ChangeMode.performBlockMutation = function(block, mutationList) {
     // store the new mutator variable values into an xml container (operating depends on mutationToDom function of each individual block)
     var container = block.mutationToDom();
     if (container) {
-        // put the mutator variable values from the list back into place. This is necessary to prevent misbehaviours within domtoMutation.
+        // put the mutator variable values from the list back into place. This is necessary to prevent misbehaviours within domToMutation.
          // In some cases domToMutation deletes all existing inputs depending on the mutator variable values and 
          // rebuilds them then with the new values stored in the xml container
         //
@@ -279,7 +292,7 @@ Blockly.ChangeMode.prototype.appendMutationStatement = function(statementBlockNa
     return statementBlock;
 };
 
-// append an output block to a specified value input
+// append an output block to a specified value input (start counting from 1)
 // name of new output block, reference to input block , position where the block should be connected (starting with 1) 
 Blockly.ChangeMode.prototype.appendNoneMutationOutput = function(outputBlockName, valueInputPosition) {
     var inputBlock = this.block_;
@@ -313,6 +326,7 @@ Blockly.ChangeMode.prototype.appendNoneMutationOutput = function(outputBlockName
     return outputBlock; 
 };
 
+// Append a mutating output block by mutating it first and connecting it to the specified value input position (start counting from 1)
 Blockly.ChangeMode.prototype.appendMutationOutput = function(outputBlockName, valueInputPosition, mutationList) {
     var inputBlock = this.block_;
     var valueInputPositionInInputList = Blockly.ChangeMode.validateAndDetermineValueInputPosition(inputBlock, valueInputPosition);
@@ -323,12 +337,12 @@ Blockly.ChangeMode.prototype.appendMutationOutput = function(outputBlockName, va
     var outputBlock = new Blockly.Block(this.block_.workspace, outputBlockName);
     if (!outputBlock.outputConnection) {
         outputBlock.dispose();
-        throw '\"' + outputBlock.type + '\" has a wrong input type. Expected: Output \nNote: Function \"appendNoneMutationStatement\" may be used for this kind of block.';
+        throw '\"' + outputBlock.type + '\" has a wrong input type. Expected: Output \nNote: Function \"appendMutationStatement\" may be used for this kind of block.';
         return null;
     }
     if (!outputBlock.mutator) {
         outputBlock.dispose();
-        throw '\"' + outputBlock.type + '\" has no mutator. \nNote: Function \"appendMutationOutput\" may be used for this kind of block.';
+        throw '\"' + outputBlock.type + '\" has no mutator. \nNote: Function \"appendNoneMutationOutput\" may be used for this kind of block.';
         return null;
     }
     
@@ -351,7 +365,8 @@ Blockly.ChangeMode.prototype.appendMutationOutput = function(outputBlockName, va
     return outputBlock; 
 };
 
-// NOTE the return value is a list of two blocks: The procedure Block itself and the corresponding call block.
+// Create a procedure block and its call block
+// NOTE: The return value is a list of two blocks: The procedure Block itself and the corresponding call block.
 Blockly.ChangeMode.prototype.createProcedure = function(hasReturn, mutationList) {
     if (hasReturn) {
         var procedureBlock = new Blockly.Block(this.block_.workspace, 'procedures_defreturn');
@@ -379,6 +394,7 @@ Blockly.ChangeMode.prototype.createProcedure = function(hasReturn, mutationList)
     return [procedureBlock, callBlock];
 }
 
+// Append the (as parameter) available block to the also specified value input (start counting from 1)
 Blockly.ChangeMode.prototype.appendProcedureCall = function(procedureCallBlock, valueInputPosition) {
     var inputBlock = this.block_;
     var valueInputPositionInInputList = Blockly.ChangeMode.validateAndDetermineValueInputPosition(inputBlock, valueInputPosition);
@@ -398,11 +414,14 @@ Blockly.ChangeMode.prototype.appendProcedureCall = function(procedureCallBlock, 
     return procedureCallBlock; 
 }
 
+// Reconnect a block which is connected to the original block (deactivated ChangeMode) to  
+// one created within the ChangeMode section (in order to preserve the specified value and reuse it)
 Blockly.ChangeMode.prototype.reconnectOutputConnection = function(attachedBlock, valueInputPosition) {
     if (attachedBlock != null) {
         var inputBlock = this.block_;
         var valueInputPositionInInputList = Blockly.ChangeMode.validateAndDetermineValueInputPosition(inputBlock, valueInputPosition);
         var connection = inputBlock.getInput(inputBlock.inputList[valueInputPositionInInputList].name).connection;
+        // Connect the currently used block and the preserved block only if the connector types match
         if (connection.checkType_(attachedBlock.outputConnection)) {
             connection.connect(attachedBlock.outputConnection);
         }
@@ -412,7 +431,7 @@ Blockly.ChangeMode.prototype.reconnectOutputConnection = function(attachedBlock,
     }
 };
 
-// Reconnect through duplicated blocks, remove all connected blocks and connect the duplicates
+// Reconnect preserved blocks back to its original place, via duplicating them. Remove all connected blocks and connect the duplicates
 Blockly.ChangeMode.prototype.reconnectAndRemoveChildren = function(){
     var blockList = [];
     var inputPositionList = [];
@@ -448,14 +467,17 @@ Blockly.ChangeMode.prototype.reconnectAllListedBlocks = function(blockList, inpu
     }
 };
 
+// Monitor to remember reconnected blocks (in order to allow the reversed process when the ChangeMode section gets deactivated)
 Blockly.ChangeMode.prototype.addToReconnectMonitor = function(block, innerConnectionPosition, outerReconnectPosition) {
     this.reconnectMonitor.push([block, innerConnectionPosition, outerReconnectPosition]);
 };
 
+// Monitor to remember created Procedures (in order to delete them whenever the ChangeMode section gets deactivated
 Blockly.ChangeMode.prototype.addToProcedureMonitor = function(procedureName) {
     this.procedureMonitor.push(procedureName);
 };
 
+// Convert the block representation into XML representation to allow the storage without losses.
 Blockly.ChangeMode.prototype.changeModeToDom = function(state) {
     var changemodeElement = document.createElement('changemode');
     changemodeElement.setAttribute('changemodestate', state);
@@ -464,6 +486,7 @@ Blockly.ChangeMode.prototype.changeModeToDom = function(state) {
     var blocks = firstStatementBlock && firstStatementBlock.getDescendants();
     var reconnectMonitorLength = this.reconnectMonitor.length;
     var posCount = 0;
+    // Convert entries in reconnect monitor
     if (blocks)  {
         for (var i=0; i < blocks.length; i++) {
             for (var j=0; j<reconnectMonitorLength; j++) {
@@ -480,6 +503,7 @@ Blockly.ChangeMode.prototype.changeModeToDom = function(state) {
         }
     }
     posCount = 0;
+    // Convert entries in procedure monitor
     for (var i=0; i<this.procedureMonitor.length; i++) {
         var element = document.createElement('procedure' + posCount);
         element.setAttribute('name', this.procedureMonitor[i]);
@@ -489,6 +513,7 @@ Blockly.ChangeMode.prototype.changeModeToDom = function(state) {
     return changemodeElement;
 };
 
+// Convert the XML representation for storage back into block representation
 Blockly.ChangeMode.prototype.domToChangeMode = function(xmlElement) {
     var firstStatementBlock = this.block_.getInputTargetBlock(this.appendInput);
     var blocks = firstStatementBlock && firstStatementBlock.getDescendants();
@@ -498,6 +523,7 @@ Blockly.ChangeMode.prototype.domToChangeMode = function(xmlElement) {
         for (var i=0; i<xmlElement.childNodes.length; i++) {
             var element = xmlElement.childNodes[i];
             var nodeName = element.nodeName;
+            // Fill the reconnect monitor with appropriate content
             if(nodeName.match(/reconnect/)) {
                 var blockPosition = parseInt(element.getAttribute('blockposition'));
                 if (blockPosition >= 0 && blockPosition <= blocksLength) {
@@ -507,6 +533,7 @@ Blockly.ChangeMode.prototype.domToChangeMode = function(xmlElement) {
                     this.addToReconnectMonitor(monitoredBlock ,valueInputPosition, reconnectPosition);
                 }
             }
+            // Fill the procedure monitor 
             else if(nodeName.match(/procedure/)) {
                 this.addToProcedureMonitor(element.getAttribute('name'));
             }
