@@ -147,7 +147,8 @@ Blockly.Language.midlevel_reference_frame = {
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
-        var dropdown =  new Blockly.FieldDropdown(this.OPERATORS);
+        //var dropdown =  new Blockly.FieldDropdown(this.OPERATORS);
+        var dropdown =  new Blockly.FieldDropdown(Blockly.CONFIG_REF_FRAME);
         this.appendDummyInput()
             .appendTitle('reference frame')
             .appendTitle(dropdown,'MODE');
@@ -166,11 +167,6 @@ Blockly.Language.midlevel_reference_frame = {
                         );
     }
 };
-
-Blockly.Language.midlevel_reference_frame.OPERATORS = 
-    [[Blockly.LANG_MID_LEVEL_REFERENCE_FRAME_BASE, 'BASE'],
-     [Blockly.LANG_MID_LEVEL_REFERENCE_FRAME_ARM, 'ARM'],
-     [Blockly.LANG_MID_LEVEL_REFERENCE_FRAME_GRIPPER, 'GRIPPER']];
 
 Blockly.Language.midlevel_ros_move_base_twist = {
     // Allows to move the robot base by twist messages
