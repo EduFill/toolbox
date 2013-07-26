@@ -29,7 +29,7 @@ Blockly.Python = Blockly.Generator.get('Python');
 }
 
 Blockly.Python.midlevel_move_gripper = function() {
-    // Code generation for finger (gripper) movements (midlevel) and handling of next level (lowlevel)
+    // Code generator for finger (gripper) movements (midlevel) and handling of next level (lowlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     if (changeModeState == 'TRUE') {
@@ -48,15 +48,35 @@ Blockly.Python.midlevel_move_gripper = function() {
 };
  
 Blockly.Python.midlevel_reference_frame = function() {
-    // Code generation of reference frames (midlevel)
+    // Code generator of reference frames (midlevel)
     var reference_name = this.getTitleValue('MODE');
     var code = Blockly['CONFIG_REF_FRAME_PY_' + reference_name];
     
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
+
+// Complete python function, that is added to Blockly.Python.definitions_
+// NOTE: There won't be a procedure block present on the workspace and 
+//       a newly created procedure (by the user) may exists next to this 
+//       procedure and might lead to an run-time error.
+Blockly.GEN_MID_LEVEL_ROS_MOVE_BASE_TWIST_DEF = 
+                'def ros_move_base_twist (lx, ly, lz, ax, ay, az):\n' +
+                '  pub = rospy.Publisher(\"cmd_vel\", Twist) \n'+
+                '\n'                    +
+                '  twist = Twist() \n'  +
+                '  # set velocities \n' +
+                '  twist.linear.x = lx \n' + 
+                '  twist.linear.y = ly \n' +
+                '  twist.linear.z = lz \n' +
+                '  twist.angular.x = ax \n' +
+                '  twist.angular.y = ay \n' +
+                '  twist.angular.z = az \n' +
+                '  # publish the topic \n'+
+                '  pub.publish(twist) \n'   +
+                '\n';
  
 Blockly.Python.midlevel_ros_move_base_twist = function() {
-    // Code generation for ROS base movements w.r.t. twist (midlevel)
+    // Code generator for ROS base movements w.r.t. twist (midlevel)
     Blockly.Python.definitions_['import_twist'] = 'from geometry_msgs.msg import Twist';
     Blockly.Python.RESERVED_WORDS_ += 'geometry_msg,Twist,';
      
@@ -74,7 +94,7 @@ Blockly.Python.midlevel_ros_move_base_twist = function() {
 };
 
 Blockly.Python.midlevel_move_arm_joint_position = function() {
-    // Code generation for moving the arm to a joint configuration (midlevel) and handling of next level (lowlevel)
+    // Code generator for moving the arm to a joint configuration (midlevel) and handling of next level (lowlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     if (changeModeState == 'TRUE') {
@@ -93,7 +113,7 @@ Blockly.Python.midlevel_move_arm_joint_position = function() {
 };
 
 Blockly.Python.midlevel_move_base_to_pose = function() {
-    // Code generation for moving the base to a 6D pose (midlevel) and handling of next level (lowlevel)
+    // Code generator for moving the base to a 6D pose (midlevel) and handling of next level (lowlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     if (changeModeState == 'TRUE') {
@@ -111,7 +131,7 @@ Blockly.Python.midlevel_move_base_to_pose = function() {
 };
 
 Blockly.Python.midlevel_move_base_relative = function() {
-    // Code generation for relative base movements (midlevel)
+    // Code generator for relative base movements (midlevel)
     Blockly.Python.definitions_['import_move_base_component'] = 'import move_base_component #/edufill_navigation/edufill_base_cmds/src/move_base_component.py';
     Blockly.Python.RESERVED_WORDS_ += 'move_base_component';
         
@@ -122,7 +142,7 @@ Blockly.Python.midlevel_move_base_relative = function() {
 };
 
 Blockly.Python.midlevel_ik_checker = function() {
-    // Code generation for testing whether a inverse kinematics solution exists (midlevel)
+    // Code generator for testing whether a inverse kinematics solution exists (midlevel)
     Blockly.Python.definitions_['from_arm_kinematics_import_*'] = 'from arm_kinematics import *  #/edufill_manipulation/edufill_arm_cmds/src/arm_kinematics.py';
     Blockly.Python.RESERVED_WORDS_ += 'arm_kinematics,';
     var pose6D = Blockly.Python.valueToCode(this, 'POSE6D', Blockly.Python.ORDER_MEMBER) || ['None'];
@@ -134,7 +154,7 @@ Blockly.Python.midlevel_ik_checker = function() {
 };
 
 Blockly.Python.midlevel_ik_solver = function() {
-    // Code generation for actually calculating a inverse kinematics solution (midlevel)
+    // Code generator for actually calculating a inverse kinematics solution (midlevel)
     Blockly.Python.definitions_['from_arm_kinematics_import_*'] = 'from arm_kinematics import *  #/edufill_manipulation/edufill_arm_cmds/src/arm_kinematics.py';
     Blockly.Python.RESERVED_WORDS_ += 'arm_kinematics,';
     var pose6D = Blockly.Python.valueToCode(this, 'POSE6D', Blockly.Python.ORDER_MEMBER) || ['None'];
@@ -146,7 +166,7 @@ Blockly.Python.midlevel_ik_solver = function() {
 };
 
 Blockly.Python.midlevel_fk_solver = function() {
-    // Code generation for calculating joint configurations from a given 6D pose (midlevel)
+    // Code generator for calculating joint configurations from a given 6D pose (midlevel)
     Blockly.Python.definitions_['from_arm_kinematics_import_KinematicsSolver'] = 'from arm_kinematics import KinematicsSolver #/edufill_manipulation/edufill_arm_cmds/src/arm_kinematics.py';
     Blockly.Python.definitions_['\'' + this.variableName + '\''] = this.variableName + ' = KinematicsSolver()';
     var joint_angles = Blockly.Python.valueToCode(this, 'JOINTS', Blockly.Python.ORDER_MEMBER) || ['None'];
@@ -156,7 +176,7 @@ Blockly.Python.midlevel_fk_solver = function() {
 };
 
 Blockly.Python.midlevel_mapping = function() {
-    // Code generation for mapping (midlevel)
+    // Code generator for mapping (midlevel)
     Blockly.Python.definitions_['import_mapping_component'] = 'import mapping_component';
     Blockly.Python.RESERVED_WORDS_ += 'mapping_component,';
     var code = '';
@@ -176,7 +196,7 @@ Blockly.Python.midlevel_mapping = function() {
 };
 
 Blockly.Python.midlevel_read_map_location = function() {
-    // Code generation for reading the actual (mabe guessed) robot location (midlevel)
+    // Code generator for reading the actual (mabe guessed) robot location (midlevel)
     Blockly.Python.definitions_['import_read_base_component'] = 'import read_base_component';
     Blockly.Python.RESERVED_WORDS_ += 'read_base_component,';
     var code = 'read_base_component.location()';
@@ -185,7 +205,7 @@ Blockly.Python.midlevel_read_map_location = function() {
 };
 
 Blockly.Python.midlevel_check_wall = function() {
-    // Code generation for testing the existence of a wall within a given range (midlevel) and handling of next level (lowlevel)
+    // Code generator for testing the existence of a wall within a given range (midlevel) and handling of next level (lowlevel)
     Blockly.Python.definitions_['import_read_laser_scan_component'] = 'import read_laser_scan_component'; 
     Blockly.Python.RESERVED_WORDS_ += 'read_laser_scan_component,';
     

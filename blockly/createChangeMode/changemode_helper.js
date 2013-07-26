@@ -186,11 +186,9 @@ attachedBlocks = function(block, output) {
         show.push(ws4 + 'var blockAttachedAt' + inputName + ' = block.getInputTargetBlock(\'' + inputName + '\');');
         show.push(ws4 + 'if (block.getInput(\'' + inputName + '\')) {');
         show.push(ws4 + ws4 + 'block.removeInput(\''+ inputName + '\');');
-        //result.push(ws4 + ws4 + '// delete Field //only if field existent.');
         show.push(ws4 + '}');
             
         dispose.push(ws4 + 'if (!block.getInput(\'' + inputName + '\')) {');
-        //dispose.push(ws4 + ws4 + '// create field = new Blockly.[...] //only if field existent.');
         dispose.push(ws4 + ws4 + '// Add the appropriate input (name: \'' + inputName + '\') here.');
         dispose.push(ws4 + '}');
         if (output) {
@@ -208,7 +206,6 @@ getProcedureArguments = function(block) {
     
     return argumentsString;
 };
-// 'output'
 
 initCode = function(outputBlock) {
     show.push('showChangeMode: function() {');

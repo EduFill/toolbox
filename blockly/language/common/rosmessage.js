@@ -176,7 +176,7 @@ Blockly.Language.rosmessage_base_pose_msg = {
             .setCheck('Number')
             .appendTitle('z');
         this.appendValueInput('Q')
-            .setCheck('Quaternion')
+            .setCheck(Blockly.LANG_CONNECTION_TYPE_QUATERNION)
             .setAlign(Blockly.ALIGN_RIGHT)
             .appendTitle('quaternion');
         this.setTooltip('TODO');

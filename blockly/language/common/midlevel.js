@@ -147,7 +147,6 @@ Blockly.Language.midlevel_reference_frame = {
     helpUrl: null,
     init: function() {
         this.setColour(Blockly.LANG_MID_LEVEL_COLOUR);
-        //var dropdown =  new Blockly.FieldDropdown(this.OPERATORS);
         var dropdown =  new Blockly.FieldDropdown(Blockly.CONFIG_REF_FRAME);
         this.appendDummyInput()
             .appendTitle('reference frame')

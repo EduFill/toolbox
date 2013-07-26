@@ -27,6 +27,7 @@ goog.provide('Blockly.Language.developchangemode');
 goog.require('Blockly.Language');
 
 Blockly.Language.developer_changemodeStatement = {
+    // ChangeMode for a statement block
     helpUrl: null,
     init: function() {
         this.setColour(1);
@@ -137,6 +138,7 @@ Blockly.Language.developer_changemode_item = {
 };
 
 Blockly.Language.developer_changemodeOutput = {
+    // ChangeMode for an output block
     helpUrl: null,
     init: function() {
         this.setColour(1);
@@ -226,6 +228,7 @@ Blockly.Language.developer_changemodeOutput = {
 };
 
 Blockly.Language.developer_reconnectOutputConnection = {
+    // Represents a block which should be reconnected
     helpUrl: null,
     init: function() {
         this.setColour(1);

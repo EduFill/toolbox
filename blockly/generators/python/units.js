@@ -29,24 +29,28 @@ if (!Blockly.Python.RESERVED_WORDS_) {
 }
 
 Blockly.Python.units_duration = function() {
+    // Code generator for indicating a duration (generates numeric number)
     var value = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE) || 0;
     
     return [value, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python.units_distance = function() {
+    // Code generator for indicating a distance (generates numeric number)
     var value = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE) || 0;
     
     return [value, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python.units_velocity = function() {
+    // Code generator for indicating a velocity (generates numeric number)
     var value = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE) || 0;
     
     return [value, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python.units_6dPose = function() {
+    // Code generator for representing a 6D pose
     var x = Blockly.Python.valueToCode(this, 'LIN_X', Blockly.Python.ORDER_NONE) || 0;
     var y = Blockly.Python.valueToCode(this, 'LIN_Y', Blockly.Python.ORDER_NONE) || 0;
     var z = Blockly.Python.valueToCode(this, 'LIN_Z', Blockly.Python.ORDER_NONE) || 0;
@@ -60,6 +64,7 @@ Blockly.Python.units_6dPose = function() {
 };
 
 Blockly.Python.units_get_6dpose_element = function() {
+    // Code generator for getting an elements value of a 6D pose variable
     var pose = Blockly.Python.valueToCode(this, 'POSE6D', Blockly.Python.ORDER_NONE) || 'None';
     var element = Blockly.Python.units_6dpose_element_operators[this.getTitleValue('MODE')];
     var code = pose + element;
@@ -76,6 +81,7 @@ Blockly.Python.units_6dpose_element_operators = {
 }
 
 Blockly.Python.units_set_6dpose_element = function() {
+    // Code generator for writing an elements value into a 6D pose variable 
     var pose = Blockly.Python.valueToCode(this, 'POSE6D', Blockly.Python.ORDER_NONE) || 'None';
     var value = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE) || '0';
     var element = Blockly.Python.units_6dpose_element_operators[this.getTitleValue('MODE')];
@@ -84,17 +90,8 @@ Blockly.Python.units_set_6dpose_element = function() {
     return code;
 };
 
-Blockly.Python.units_base_pose = function() {
-    var x = Blockly.Python.valueToCode(this, 'X', Blockly.Python.ORDER_NONE) || 0;
-    var y = Blockly.Python.valueToCode(this, 'Y', Blockly.Python.ORDER_NONE) || 0;
-    var theta = Blockly.Python.valueToCode(this, 'THETA', Blockly.Python.ORDER_NONE) || 0;
-    
-    var code = '[' + x + ',' +  y + ',' + theta + ']';
-    
-    return [code, Blockly.Python.ORDER_ATOMIC]
-};
-
 Blockly.Python.units_joints = function() {
+    // Code generator for creating a set of joints 
     var joints = this.jointCount_;
     var code = '';
     var value = [];
@@ -107,6 +104,7 @@ Blockly.Python.units_joints = function() {
 };
 
 Blockly.Python.units_get_joints_element = function() {
+    // Code generator for getting joint values of a joint variable
     var element = Blockly.Python.valueToCode(this, 'VALUE_POS', Blockly.Python.ORDER_NONE) || '1';
     element = parseInt(element)
     var jointList = Blockly.Python.valueToCode(this, 'JOINTS', Blockly.Python.ORDER_NONE) || '[]';
@@ -116,6 +114,7 @@ Blockly.Python.units_get_joints_element = function() {
 };
 
 Blockly.Python.units_set_joints = function() {
+    // Code generator for writting a value into a joint variable
     var element = Blockly.Python.valueToCode(this, 'VALUE_POS', Blockly.Python.ORDER_NONE) || '1';
     element = parseInt(element);
     var jointList = Blockly.Python.valueToCode(this, 'JOINTS', Blockly.Python.ORDER_NONE) || '[]';
@@ -126,6 +125,7 @@ Blockly.Python.units_set_joints = function() {
 }
 
 Blockly.Python.units_degToRad = function() {
+    // Code generator for degree to radians conversion
     Blockly.Python.definitions_['import_math'] = 'import math'
     Blockly.Python.RESERVED_WORDS_ += 'math,';
     var value = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE) || 0;
@@ -136,6 +136,7 @@ Blockly.Python.units_degToRad = function() {
 };
 
 Blockly.Python.units_radToDeg = function() {
+    // Code generator for radian to degree conversion
     Blockly.Python.definitions_['import_math'] = 'import math'
     Blockly.Python.RESERVED_WORDS_ += 'math,';
     var value = Blockly.Python.valueToCode(this, 'VALUE', Blockly.Python.ORDER_NONE) || 0;
@@ -146,6 +147,7 @@ Blockly.Python.units_radToDeg = function() {
 };
 
 Blockly.Python.units_eulerToQuaternion = function() {
+    // Code generator for for euler angles to quaternion conversion
     Blockly.Python.definitions_['import_math'] = 'import math'
     Blockly.Python.RESERVED_WORDS_ += 'math,';
     
@@ -163,6 +165,7 @@ Blockly.Python.units_eulerToQuaternion = function() {
 };
 
 Blockly.Python.units_quaternionToEuler = function() {
+    // Code generator for quaternion to euler angles conversion
     Blockly.Python.definitions_['import_math'] = 'import math'
     Blockly.Python.RESERVED_WORDS_ += 'math,';
 

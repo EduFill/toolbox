@@ -29,6 +29,7 @@ if (!Blockly.Python.RESERVED_WORDS_) {
 }
 
 Blockly.Python.vector = function() {
+    // Code generator for creating a vector 
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np'
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,';
     var code = '['
@@ -43,6 +44,7 @@ Blockly.Python.vector = function() {
 };
 
 Blockly.Python.matrix = function() {
+    // Code generator for creating a matrix 
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np'
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,';
     var code = '['
@@ -57,6 +59,7 @@ Blockly.Python.matrix = function() {
 };
 
 Blockly.Python.row = function() {
+    // Code generator for creating a matrix row (creates an array) 
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np'
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,';
     var code = '[';
@@ -71,6 +74,7 @@ Blockly.Python.row = function() {
 };
 
 Blockly.Python.axis_rotation = function(){
+    // Code generator for matrix rotations along x,y or z axis
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np';
     Blockly.Python.definitions_['import_math'] = 'import math';
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,math,';
@@ -103,6 +107,7 @@ Blockly.Python.axis_rotation = function(){
 }
 
 Blockly.Python.matrix_multiplication = function(){
+    // Code generator for matrix/vector multiplication 
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np'
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,';
     var A = Blockly.Python.valueToCode(this, 'A', Blockly.Python.ORDER_NONE);
@@ -113,6 +118,7 @@ Blockly.Python.matrix_multiplication = function(){
 };
 
 Blockly.Python.matrix_add_and_sub = function() {
+    // Code generator for matrix/vector addition and multiplication
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np'
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,';
     var A = Blockly.Python.valueToCode(this, 'A', Blockly.Python.ORDER_NONE);
@@ -130,6 +136,7 @@ Blockly.Python.matrix_add_and_sub_operators = {
 };
 
 Blockly.Python.matrix_create_frame = function() {
+    // Code generator for the creating of a homogeneous transform matrix
     Blockly.Python.definitions_['import_numpy_as_np'] = 'import numpy as np'
     Blockly.Python.RESERVED_WORDS_ += 'numpy,np,';
     var value_translation = Blockly.Python.valueToCode(this, 'TRANSLATION', Blockly.Python.ORDER_NONE) || '[[0],[0],[0]]';

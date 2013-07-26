@@ -217,14 +217,12 @@ Blockly.Language.units_get_6dpose_element = {
 };
 
 Blockly.Language.units_6dpose_element_operators =
-    [
-     ['x','LIN_X'],
+    [['x','LIN_X'],
      ['y','LIN_Y'],
      ['z','LIN_Z'],
      ['roll','ROLL'],
      ['pitch','PITCH'],
-     ['yaw','YAW']
-     ]
+     ['yaw','YAW']];
 
 Blockly.Language.units_set_6dpose_element = {
     // Set element of 6D pose to a numeric value
@@ -467,7 +465,7 @@ Blockly.Language.units_eulerToQuaternion = {
         .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("yaw (rad)");
-    this.setOutput(true, 'Quaternion');
+    this.setOutput(true, Blockly.LANG_CONNECTION_TYPE_QUATERNION);
     this.setTooltip(
         'Convert euler angles to quaternions.\n' +
         '---\n' +

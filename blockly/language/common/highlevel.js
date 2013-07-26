@@ -916,4 +916,4 @@ Blockly.Language.highlevel_check_wall = {
         block.changemode.setChangeMode(false, 'output');
         block.image.setText(Blockly.pathToBlockly + 'media/menu0.png');
     }
-}
+};

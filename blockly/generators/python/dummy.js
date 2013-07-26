@@ -28,6 +28,58 @@
   Blockly.Python.RESERVED_WORDS_ = '';
 }
 
+Blockly.GEN_HIGH_LEVEL_MOVE_ROBOT_TO_CUBE_DEF = 'def move_robot_to_cube(cube_color): \n' +
+                                                '  print \"Search for cube.\" \n' +
+                                                '  var cube_pos = find_cube(cube_color, 1, \"base_link\") \n' +
+                                                '  print \"IF found: Move base near cube. \\n ELSE: Turn on the spot OR move randomly and search again.\" \n';
+
+Blockly.GEN_HIGH_LEVEL_GRASP_CUBE_DEF = 'def grasp_cube(cube_color): \n' +
+                                        '  var cube_pos = find_cube(cube_color, 1, \"arm_link_0\") \n' +
+                                        '  print \"Search for cube.\"' +
+                                        '  print \"IF found: Move arm to cube. ELSE: error\" \n' +
+                                        '  print \"Close gripper\" \n' +
+                                        '  move_gripper_component.move(\"CLOSE\") \n';
+
+Blockly.GEN_HIGH_LEVEL_BASE_PLACEMENT_DEF = 
+    'def base_placement(): \n' +
+    '  rospy.init_node(\'raw_base_placement_test_script\') \n\n' +
+    '  ### tf listener \n' +
+    '  tf_listener = tf.TransformListener() \n\n' +
+    '  # BASE PLACEMENT \n' +
+    '  shiftbase_srv = rospy.ServiceProxy(\'/raw_relative_movements/shiftbase\', raw_srvs.srv.SetPoseStamped) \n\n' +
+    '  print \"wait for service: /raw_relative_movements/shiftbase\"   \n' +
+    '  rospy.wait_for_service(\'/raw_relative_movements/shiftbase\', 30) \n\n' +
+    '  goalpose = geometry_msgs.msg.PoseStamped() \n' +
+    '  goalpose.pose.position.x = 0.1 \n' +
+    '  goalpose.pose.position.y = 0.1 \n' +
+    '  goalpose.pose.position.z = 0.1 \n' +
+    '  quat = tf.transformations.quaternion_from_euler(0,0,0) \n' +
+    '  goalpose.pose.orientation.x = quat[0] \n' +
+    '  goalpose.pose.orientation.y = quat[1] \n' +
+    '  goalpose.pose.orientation.z = quat[2] \n' +
+    '  goalpose.pose.orientation.w = quat[3] \n\n' +
+    '  print \"GOAL POSE TRANSFORMED: \", goalpose \n' +
+    '  # call base placement service \n' +
+    '  base_pose = moveoptimalbase_srv(goalpose) \n\n' +  
+    '  goalpose = geometry_msgs.msg.PoseStamped() \n' +
+    '  goalpose.pose.position.x = -0.1 \n' +
+    '  goalpose.pose.position.y = -0.1 \n' +
+    '  goalpose.pose.position.z = 0.1 \n' +
+    '  quat = tf.transformations.quaternion_from_euler(0,0,0) \n' +
+    '  goalpose.pose.orientation.x = quat[0] \n' +
+    '  goalpose.pose.orientation.y = quat[1] \n' +
+    '  goalpose.pose.orientation.z = quat[2] \n' +
+    '  goalpose.pose.orientation.w = quat[3] \n\n' +
+    '  print \"GOAL POSE TRANSFORMED: \", goalpose \n' +
+    '  # call relative movment service \n' +
+    '  base_pose = shiftbase_srv (goalpose)  \n';
+
+Blockly.GEN_MID_LEVEL_FIND_CUBE_DEF = 'def find_cube (cube_color, reference_frame):\n' +
+                                      '  #Dummy body with a dummy list and a print command \n' +
+                                      '  print \"Search for \" + cube_color + \" colored cube related to \" + reference_frame + \".\" \n'  +
+                                      '  list_of_transforms = [[0, 0, 0],[1,0,1]] \n' +
+                                      '  return list_of_transforms \n';
+
 Blockly.Python.test = function() {
     var changeModeState = this.getTitleValue('STATE');
     var code;

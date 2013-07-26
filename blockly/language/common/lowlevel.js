@@ -227,6 +227,7 @@ Blockly.Language.lowlevel_package_main = {
 };
 
 Blockly.Language.lowlevel_application_import = {
+    // part of lowlevel_package_main
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle(Blockly.LANG_LOW_LEVEL_IMPORT_MSG);
@@ -238,6 +239,7 @@ Blockly.Language.lowlevel_application_import = {
 };
 
 Blockly.Language.lowlevel_application_from_import = {
+    // part of lowlevel_package_main
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle(Blockly.LANG_LOW_LEVEL_FROM_IMPORT_MSG);
@@ -249,6 +251,7 @@ Blockly.Language.lowlevel_application_from_import = {
 }; 
 
 Blockly.Language.lowlevel_application_container = {
+    // part of lowlevel_package_main
     init: function() {
         this.setColour(Blockly.LANG_LOW_LEVEL_COLOUR);
         this.appendDummyInput().appendTitle(Blockly.LANG_LOW_LEVEL_MAIN_FRAME);
@@ -412,11 +415,6 @@ Blockly.Language.lowlevel_ros_init_node = {
     }
 };
 
-Blockly.Language.lowlevel_ros_init_node.OPERATORS_BOOL = 
-    [[Blockly.LANG_LOW_LEVEL_ROS_INIT_NODE_EMPTY, 'EMPTY'],
-     [Blockly.LANG_LOW_LEVEL_ROS_INIT_NODE_FALSE, 'FALSE'],
-     [Blockly.LANG_LOW_LEVEL_ROS_INIT_NODE_TRUE, 'TRUE']];
-
 Blockly.Language.lowlevel_ros_spin = {
     // Keeps the ROS node alive
     helpUrl: null,
@@ -464,7 +462,7 @@ Blockly.Language.lowlevel_ros_log = {
     }
 };
 
-
+// Please do not change the names, they are directly related to ROS
 Blockly.Language.lowlevel_ros_log.OPERATORS = 
     [[Blockly.LANG_LOW_LEVEL_ROS_LOG_EMPTY, 'EMPTY'],
      [Blockly.LANG_LOW_LEVEL_ROS_LOG_DEBUG, 'DEBUG'],

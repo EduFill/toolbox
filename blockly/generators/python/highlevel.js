@@ -29,6 +29,7 @@
 }
 
 Blockly.Python.highlevel_application = function() {
+    // Necessary imports and main function required for each application
     var roslib = 'roslib; roslib.load_manifest(\"' + this.pkg_name + '\")';
     roslib = roslib.replace(/[']/g,'');
     Blockly.Python.definitions_['import_'+ roslib] = 'import ' + roslib; 
@@ -36,13 +37,14 @@ Blockly.Python.highlevel_application = function() {
     Blockly.Python.RESERVED_WORDS_ += 'roslib,rospy,';
     var branch0 = Blockly.Python.statementToCode(this, 'APP_STACK') || '  pass\n';
     var code = 'if __name__==\"__main__\":\n' +
-               '  rospy.init_node(\'edufill_blockly_node\') \n\n' + //TODO if this.rospkg_ = 1 then show a separate statement and modify this line
+               '  rospy.init_node(\'edufill_blockly_node\') \n\n' + 
                branch0;
     
     return code;
 };
 
 Blockly.Python.highlevel_move_base_to_goal = function() {
+    // Code generator for base movements to a predefined goal (highlevel) and handling of next level (midlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     
@@ -59,11 +61,11 @@ Blockly.Python.highlevel_move_base_to_goal = function() {
     }
     else {throw 'user changed value to an undefined state ' + changeModeState}
     
-    
     return code;
 };
 
 Blockly.Python.highlevel_move_gripper_string = function() {
+    // Code generator for finger (gripper) movements (highlevel) and handling of next level (midlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     
@@ -84,6 +86,7 @@ Blockly.Python.highlevel_move_gripper_string = function() {
 };
 
 Blockly.Python.highlevel_move_arm_joint_string = function() {
+    // Code generator for arm movements (highlevel) and handling of next level (midlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     
@@ -104,6 +107,7 @@ Blockly.Python.highlevel_move_arm_joint_string = function() {
 };
 
 Blockly.Python.highlevel_move_base_to_direction = function() {
+    // Code generator for base movements into a direction (highlevel) and handling of next level (midlevel)
     var changeModeState = this.getTitleValue('STATE');
     var code;
     
@@ -125,6 +129,7 @@ Blockly.Python.highlevel_move_base_to_direction = function() {
 };
 
 Blockly.Python.highlevel_move_arm_through_ik = function() {
+    // Code generator for arm movements via inverse kinematics (highlevel) and handling of next level (midlevel)
     var ref = "/arm_link_0";
     
     var pose = Blockly.Python.valueToCode(this, 'POSE6D', Blockly.Python.ORDER_NONE) || 'NONE';
@@ -134,7 +139,6 @@ Blockly.Python.highlevel_move_arm_through_ik = function() {
     var code;
     
     if (changeModeState == 'TRUE') {
-        // procedure call 
         code = Blockly.Python.valueToCode(this, this.changemode.appendInput, Blockly.Python.ORDER_NONE);
     }
     else if (changeModeState == 'FALSE') {
@@ -149,6 +153,7 @@ Blockly.Python.highlevel_move_arm_through_ik = function() {
 };
 
 Blockly.Python.highlevel_find_cube = function() { 
+    // Code generator for finding a colored cube (highlevel)
     Blockly.Python.definitions_['import_detect_objects'] = 'import detect_objects'; 
     Blockly.Python.RESERVED_WORDS_ += 'detect_objects,';
     
@@ -159,6 +164,7 @@ Blockly.Python.highlevel_find_cube = function() {
 };
 
 Blockly.Python.highlevel_check_wall = function() {
+    // Code generator for testing the existence of a wall (highlevel) and handling of next level (midlevel)
     Blockly.Python.definitions_['import_read_laser_scan_component'] = 'import read_laser_scan_component'; 
     Blockly.Python.RESERVED_WORDS_ += 'read_laser_scan_component,';
     
