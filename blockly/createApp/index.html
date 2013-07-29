@@ -368,6 +368,7 @@ function load_xml(event) {
                 <block type="midlevel_reference_frame"></block>
                 <block type="lowlevel_package_main"><mutation imports="1" from_imports="1"></mutation><title name="ROSPaName">ros_package_name</title><value name="IMPORT0"><block type="text"><title name="TEXT">module_name</title></block></value><value name="FROM_IMPORT0"><block type="lowlevel_from_x_import"><title name="FROM">module_name</title><title name="IMPORT">function_name</title></block></value></block>
                 <block type="lowlevel_from_x_import"></block>
+                <block type="lowlevel_get_param"></block>
                 <block type="lowlevel_ros_init_node"></block>
                 <block type="lowlevel_create_publisher"><value name="NODE"><block type="text"><title name="TEXT">topic_name</title></block></value></block>
                 <block type="lowlevel_publish"></block>
@@ -377,7 +378,6 @@ function load_xml(event) {
                 <block type="lowlevel_ros_log"></block>
                 <block type="lowlevel_ros_sleep"></block>
                 <block type="lowlevel_get_ros_time"></block>
-                <block type="lowlevel_get_ros_time_in_unit"></block>
                 <block type="lowlevel_quaternion_from_euler"></block>
                 <block type="ros_other_node"></block>
             </category>

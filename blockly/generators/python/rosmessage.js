@@ -198,7 +198,7 @@ Blockly.Python.rosmessage_arm_joint_position_msg = function() {
     Blockly.Python.definitions_['import_brics_actuator.msg'] = 'import brics_actuator.msg';
     Blockly.Python.definitions_['from_brics_actuator.msg_import_JointPositions_JointValue_Poison'] = 'from brics_actuator.msg import JointPositions, JointValue, Poison';
     Blockly.Python.RESERVED_WORDS_ += 'rospy,brics_actuator.msg,JointPositions,JointValue,Poison,';
-    
+    /*
     var msg = '';
     var list = '';
     for (var i=0; i<listLength; i++) {
@@ -208,10 +208,12 @@ Blockly.Python.rosmessage_arm_joint_position_msg = function() {
                '  jv' + i + '.unit = "rad"\n\n';
         list +='jv' + i + ((i != listLength-1) ? ',' : '');
     }
+    */
     Blockly.Python.definitions_['def_create_joint_position_msg']   = 
             'def create_joint_position_msg (jointNameList, jointValueList):\n' +
-            '  jp = JointPositions()\n\n' +
-            '  for i in jointNameList:\n' +
+            '  jp = JointPositions()\n' +
+            '  jv = [None] * len(jointNameList)\n' +
+            '  for i in range (0, len(jointNameList)-1):\n' +
             '    jv[i] = JointValue()\n' +
             '    jv[i].joint_uri = jointNameList[i]\n' +
             '    jv[i].value = jointValueList[i]\n' +
@@ -220,7 +222,8 @@ Blockly.Python.rosmessage_arm_joint_position_msg = function() {
             '  p = Poison() \n' +
             '  jp.poisonStamp = p\n' +
             '  jp.positions = jv\n\n' +
-            '  return jp.positions\n';
+            //'  return jp.positions\n';
+            '  return jp\n';
     
     var jointNameList = [];
     var jointValueList = [];
